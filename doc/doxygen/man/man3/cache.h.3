@@ -1,0 +1,170 @@
+.TH "cache.h" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+cache.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pthread\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcache_t\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int \fBcache_constructor_t\fP (void *obj, void *notused1, int notused2)"
+.br
+.ti -1c
+.RI "typedef void \fBcache_destructor_t\fP (void *obj, void *notused)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcache_t\fP * \fBcache_create\fP (const char *name, size_t bufsize, size_t align, \fBcache_constructor_t\fP *constructor, \fBcache_destructor_t\fP *destructor)"
+.br
+.ti -1c
+.RI "void \fBcache_destroy\fP (\fBcache_t\fP *handle)"
+.br
+.ti -1c
+.RI "void * \fBcache_alloc\fP (\fBcache_t\fP *handle)"
+.br
+.ti -1c
+.RI "void \fBcache_free\fP (\fBcache_t\fP *handle, void *ptr)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBcache_error\fP"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef int cache_constructor_t(void *obj, void *notused1, int notused2)"
+Constructor used to initialize allocated objects
+.PP
+\fBParameters:\fP
+.RS 4
+\fIobj\fP pointer to the object to initialized\&. 
+.br
+\fInotused1\fP This parameter is currently not used\&. 
+.br
+\fInotused2\fP This parameter is currently not used\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+you should return 0, but currently this is not checked 
+.RE
+.PP
+
+.SS "typedef void cache_destructor_t(void *obj, void *notused)"
+Destructor used to clean up allocated objects before they are returned to the operating system\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIobj\fP pointer to the object to initialized\&. 
+.br
+\fInotused1\fP This parameter is currently not used\&. 
+.br
+\fInotused2\fP This parameter is currently not used\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+you should return 0, but currently this is not checked 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBcache_t\fP* cache_create (const char *name, size_tbufsize, size_talign, \fBcache_constructor_t\fP *constructor, \fBcache_destructor_t\fP *destructor)"
+Create an object cache\&.
+.PP
+The object cache will let you allocate objects of the same size\&. It is fully MT safe, so you may allocate objects from multiple threads without having to do any syncrhonization in the application code\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIname\fP the name of the object cache\&. This name may be used for debug purposes and may help you track down what kind of object you have problems with (buffer overruns, leakage etc) 
+.br
+\fIbufsize\fP the size of each object in the cache 
+.br
+\fIalign\fP the alignment requirements of the objects in the cache\&. 
+.br
+\fIconstructor\fP the function to be called to initialize memory when we need to allocate more memory from the os\&. 
+.br
+\fIdestructor\fP the function to be called before we release the memory back to the os\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a handle to an object cache if successful, NULL otherwise\&. 
+.RE
+.PP
+
+.PP
+References cache_t::bufsize, cache_t::constructor, cache_t::destructor, cache_t::freetotal, initial_pool_size, cache_t::mutex, cache_t::name, cache_t::ptr, and redzone_pattern\&.
+.SS "void cache_destroy (\fBcache_t\fP *handle)"
+Destroy an object cache\&.
+.PP
+Destroy and invalidate an object cache\&. You should return all buffers allocated with cache_alloc by using cache_free before calling this function\&. Not doing so results in undefined behavior (the buffers may or may not be invalidated)
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP the handle to the object cache to destroy\&. 
+.RE
+.PP
+
+.PP
+References cache_t::destructor, cache_t::freecurr, cache_t::mutex, cache_t::name, and cache_t::ptr\&.
+.SS "void* cache_alloc (\fBcache_t\fP *handle)"
+Allocate an object from the cache\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP the handle to the object cache to allocate from 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to an initialized object from the cache, or NULL if the allocation cannot be satisfied\&. 
+.RE
+.PP
+
+.PP
+References cache_t::bufsize, cache_t::constructor, cache_t::freecurr, cache_t::mutex, cache_t::ptr, and redzone_pattern\&.
+.SS "void cache_free (\fBcache_t\fP *handle, void *ptr)"
+Return an object back to the cache\&.
+.PP
+The caller should return the object in an initialized state so that the object may be returned in an expected state from cache_alloc\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP handle to the object cache to return the object to 
+.br
+\fIptr\fP pointer to the object to return\&. 
+.RE
+.PP
+
+.PP
+References cache_t::bufsize, cache_error, cache_t::destructor, cache_t::freecurr, cache_t::freetotal, cache_t::mutex, cache_t::ptr, and redzone_pattern\&.
+.SH "Variable Documentation"
+.PP 
+.SS "int cache_error"
+
+.PP
+Referenced by cache_free()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

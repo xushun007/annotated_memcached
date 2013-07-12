@@ -1,0 +1,64 @@
+.TH "protocol_binary_request_incr" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+protocol_binary_request_incr \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <protocol_binary\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   \fBprotocol_binary_request_header\fP \fBheader\fP"
+.br
+.ti -1c
+.RI "   struct {"
+.br
+.ti -1c
+.RI "      uint64_t \fBdelta\fP"
+.br
+.ti -1c
+.RI "      uint64_t \fBinitial\fP"
+.br
+.ti -1c
+.RI "      uint32_t \fBexpiration\fP"
+.br
+.ti -1c
+.RI "   } \fBbody\fP"
+.br
+.ti -1c
+.RI "} \fBmessage\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBbytes\fP [sizeof(\fBprotocol_binary_request_header\fP)+20]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of the structure used by the increment and decrement command\&. See section 4 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBprotocol_binary_request_header\fP protocol_binary_request_incr::header"
+
+.SS "uint64_t protocol_binary_request_incr::delta"
+
+.SS "uint64_t protocol_binary_request_incr::initial"
+
+.SS "uint32_t protocol_binary_request_incr::expiration"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_incr::body"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_incr::message"
+
+.SS "uint8_t protocol_binary_request_incr::bytes[sizeof(\fBprotocol_binary_request_header\fP)+20]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

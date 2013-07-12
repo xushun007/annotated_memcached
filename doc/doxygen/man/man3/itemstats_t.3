@@ -1,0 +1,74 @@
+.TH "itemstats_t" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+itemstats_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint64_t \fBevicted\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBevicted_nonzero\fP"
+.br
+.ti -1c
+.RI "\fBrel_time_t\fP \fBevicted_time\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBreclaimed\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBoutofmemory\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBtailrepairs\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBexpired_unfetched\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBevicted_unfetched\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "uint64_t itemstats_t::evicted"
+
+.PP
+Referenced by do_item_alloc(), do_item_stats_totals(), and item_stats_evictions()\&.
+.SS "uint64_t itemstats_t::evicted_nonzero"
+
+.PP
+Referenced by do_item_alloc()\&.
+.SS "\fBrel_time_t\fP itemstats_t::evicted_time"
+
+.PP
+Referenced by do_item_alloc()\&.
+.SS "uint64_t itemstats_t::reclaimed"
+
+.PP
+Referenced by do_item_alloc(), and do_item_stats_totals()\&.
+.SS "uint64_t itemstats_t::outofmemory"
+
+.PP
+Referenced by do_item_alloc()\&.
+.SS "uint64_t itemstats_t::tailrepairs"
+
+.PP
+Referenced by do_item_alloc()\&.
+.SS "uint64_t itemstats_t::expired_unfetched"
+
+.PP
+Referenced by do_item_alloc(), and do_item_stats_totals()\&.
+.SS "uint64_t itemstats_t::evicted_unfetched"
+
+.PP
+Referenced by do_item_alloc(), and do_item_stats_totals()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

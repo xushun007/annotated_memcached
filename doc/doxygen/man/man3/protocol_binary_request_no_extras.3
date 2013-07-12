@@ -1,0 +1,41 @@
+.TH "protocol_binary_request_no_extras" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+protocol_binary_request_no_extras \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <protocol_binary\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   \fBprotocol_binary_request_header\fP \fBheader\fP"
+.br
+.ti -1c
+.RI "} \fBmessage\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBbytes\fP [sizeof(\fBprotocol_binary_request_header\fP)]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of a request-packet containing no extras 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBprotocol_binary_request_header\fP protocol_binary_request_no_extras::header"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_no_extras::message"
+
+.SS "uint8_t protocol_binary_request_no_extras::bytes[sizeof(\fBprotocol_binary_request_header\fP)]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

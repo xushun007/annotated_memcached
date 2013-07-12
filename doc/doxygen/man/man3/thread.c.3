@@ -1,0 +1,361 @@
+.TH "thread.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+thread.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'memcached\&.h'\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBconn_queue_item\fP"
+.br
+.ti -1c
+.RI "struct \fBconn_queue\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBITEMS_PER_ALLOC\fP   64"
+.br
+.ti -1c
+.RI "#define \fBhashsize\fP(n)   ((unsigned long int)1<<(n))"
+.br
+.ti -1c
+.RI "#define \fBhashmask\fP(n)   (\fBhashsize\fP(n)-1)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBconn_queue_item\fP \fBCQ_ITEM\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBconn_queue\fP \fBCQ\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned short \fBrefcount_incr\fP (unsigned short *refcount)"
+.br
+.ti -1c
+.RI "unsigned short \fBrefcount_decr\fP (unsigned short *refcount)"
+.br
+.ti -1c
+.RI "void \fBitem_lock_global\fP (void)"
+.br
+.ti -1c
+.RI "void \fBitem_unlock_global\fP (void)"
+.br
+.ti -1c
+.RI "void \fBitem_lock\fP (uint32_t hv)"
+.br
+.ti -1c
+.RI "void * \fBitem_trylock\fP (uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBitem_trylock_unlock\fP (void *lock)"
+.br
+.ti -1c
+.RI "void \fBitem_unlock\fP (uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBswitch_item_lock_type\fP (enum \fBitem_lock_types\fP type)"
+.br
+.ti -1c
+.RI "void \fBaccept_new_conns\fP (const bool do_accept)"
+.br
+.ti -1c
+.RI "void \fBdispatch_conn_new\fP (int sfd, enum \fBconn_states\fP init_state, int event_flags, int read_buffer_size, enum \fBnetwork_transport\fP transport)"
+.br
+.ti -1c
+.RI "int \fBis_listen_thread\fP ()"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBitem_alloc\fP (char *key, size_t nkey, int flags, \fBrel_time_t\fP exptime, int nbytes)"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBitem_get\fP (const char *key, const size_t nkey)"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBitem_touch\fP (const char *key, size_t nkey, uint32_t exptime)"
+.br
+.ti -1c
+.RI "int \fBitem_link\fP (\fBitem\fP *\fBitem\fP)"
+.br
+.ti -1c
+.RI "void \fBitem_remove\fP (\fBitem\fP *\fBitem\fP)"
+.br
+.ti -1c
+.RI "int \fBitem_replace\fP (\fBitem\fP *old_it, \fBitem\fP *new_it, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBitem_unlink\fP (\fBitem\fP *\fBitem\fP)"
+.br
+.ti -1c
+.RI "void \fBitem_update\fP (\fBitem\fP *\fBitem\fP)"
+.br
+.ti -1c
+.RI "enum \fBdelta_result_type\fP \fBadd_delta\fP (\fBconn\fP *c, const char *key, const size_t nkey, int incr, const int64_t delta, char *buf, uint64_t *cas)"
+.br
+.ti -1c
+.RI "enum \fBstore_item_type\fP \fBstore_item\fP (\fBitem\fP *\fBitem\fP, int comm, \fBconn\fP *c)"
+.br
+.ti -1c
+.RI "void \fBitem_flush_expired\fP ()"
+.br
+.ti -1c
+.RI "char * \fBitem_cachedump\fP (unsigned int \fBslabs_clsid\fP, unsigned int limit, unsigned int *bytes)"
+.br
+.ti -1c
+.RI "void \fBitem_stats\fP (\fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "void \fBitem_stats_totals\fP (\fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "void \fBitem_stats_sizes\fP (\fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "void \fBSTATS_LOCK\fP ()"
+.br
+.ti -1c
+.RI "void \fBSTATS_UNLOCK\fP ()"
+.br
+.ti -1c
+.RI "void \fBthreadlocal_stats_reset\fP (void)"
+.br
+.ti -1c
+.RI "void \fBthreadlocal_stats_aggregate\fP (struct \fBthread_stats\fP *\fBstats\fP)"
+.br
+.ti -1c
+.RI "void \fBslab_stats_aggregate\fP (struct \fBthread_stats\fP *\fBstats\fP, struct \fBslab_stats\fP *out)"
+.br
+.ti -1c
+.RI "void \fBthread_init\fP (int nthreads, struct event_base *main_base)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "pthread_mutex_t \fBcache_lock\fP"
+.br
+.ti -1c
+.RI "pthread_mutex_t \fBconn_lock\fP = PTHREAD_MUTEX_INITIALIZER"
+.br
+.ti -1c
+.RI "pthread_mutex_t \fBatomics_mutex\fP = PTHREAD_MUTEX_INITIALIZER"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define ITEMS_PER_ALLOC   64"
+
+.SS "#define hashsize(n)   ((unsigned long int)1<<(n))"
+
+.PP
+Referenced by thread_init()\&.
+.SS "#define hashmask(n)   (\fBhashsize\fP(n)-1)"
+
+.PP
+Referenced by item_lock(), item_trylock(), and item_unlock()\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBconn_queue_item\fP \fBCQ_ITEM\fP"
+
+.SS "typedef struct \fBconn_queue\fP \fBCQ\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "unsigned short refcount_incr (unsigned short *refcount)"
+
+.PP
+References atomics_mutex, and mutex_unlock\&.
+.PP
+Referenced by do_item_alloc(), do_item_get(), and do_item_link()\&.
+.SS "unsigned short refcount_decr (unsigned short *refcount)"
+
+.PP
+References atomics_mutex, and mutex_unlock\&.
+.PP
+Referenced by do_item_alloc(), and do_item_remove()\&.
+.SS "void item_lock_global (void)"
+
+.SS "void item_unlock_global (void)"
+
+.PP
+References mutex_unlock\&.
+.SS "void item_lock (uint32_thv)"
+
+.PP
+References hashmask, hashpower, ITEM_LOCK_GRANULAR, and likely\&.
+.PP
+Referenced by add_delta(), item_get(), item_link(), item_remove(), item_touch(), item_unlink(), item_update(), and store_item()\&.
+.SS "void* item_trylock (uint32_thv)"
+
+.PP
+References hashmask, and hashpower\&.
+.PP
+Referenced by do_item_alloc()\&.
+.SS "void item_trylock_unlock (void *lock)"
+
+.PP
+References mutex_unlock\&.
+.PP
+Referenced by do_item_alloc()\&.
+.SS "void item_unlock (uint32_thv)"
+
+.PP
+References hashmask, hashpower, ITEM_LOCK_GRANULAR, likely, and mutex_unlock\&.
+.PP
+Referenced by add_delta(), item_get(), item_link(), item_remove(), item_touch(), item_unlink(), item_update(), and store_item()\&.
+.SS "void switch_item_lock_type (enum \fBitem_lock_types\fPtype)"
+
+.PP
+References ITEM_LOCK_GLOBAL, ITEM_LOCK_GRANULAR, and settings::num_threads\&.
+.SS "void accept_new_conns (const booldo_accept)"
+
+.PP
+References conn_lock, and do_accept_new_conns()\&.
+.SS "void dispatch_conn_new (intsfd, enum \fBconn_states\fPinit_state, intevent_flags, intread_buffer_size, enum \fBnetwork_transport\fPtransport)"
+
+.PP
+References conn_queue_item::event_flags, conn_queue_item::init_state, MEMCACHED_CONN_DISPATCH, settings::num_threads, conn_queue_item::read_buffer_size, conn_queue_item::sfd, and conn_queue_item::transport\&.
+.SS "int is_listen_thread (void)"
+
+.PP
+References LIBEVENT_DISPATCHER_THREAD::thread_id\&.
+.SS "\fBitem\fP* item_alloc (char *key, size_tnkey, intflags, \fBrel_time_t\fPexptime, intnbytes)"
+
+.PP
+References do_item_alloc()\&.
+.SS "\fBitem\fP* item_get (const char *key, const size_tnkey)"
+
+.PP
+References do_item_get(), hash(), item_lock(), and item_unlock()\&.
+.SS "\fBitem\fP* item_touch (const char *key, size_tnkey, uint32_texptime)"
+
+.PP
+References do_item_touch(), hash(), item_lock(), and item_unlock()\&.
+.SS "int item_link (\fBitem\fP *item)"
+
+.PP
+References do_item_link(), hash(), ITEM_key, item_lock(), item_unlock(), and _stritem::nkey\&.
+.SS "void item_remove (\fBitem\fP *item)"
+
+.PP
+References do_item_remove(), hash(), ITEM_key, item_lock(), item_unlock(), and _stritem::nkey\&.
+.SS "int item_replace (\fBitem\fP *old_it, \fBitem\fP *new_it, const uint32_thv)"
+
+.PP
+References do_item_replace()\&.
+.PP
+Referenced by do_add_delta(), and do_store_item()\&.
+.SS "void item_unlink (\fBitem\fP *item)"
+
+.PP
+References do_item_unlink(), hash(), ITEM_key, item_lock(), item_unlock(), and _stritem::nkey\&.
+.SS "void item_update (\fBitem\fP *item)"
+
+.PP
+References do_item_update(), hash(), ITEM_key, item_lock(), item_unlock(), and _stritem::nkey\&.
+.SS "enum \fBdelta_result_type\fP add_delta (\fBconn\fP *c, const char *key, const size_tnkey, intincr, const int64_tdelta, char *buf, uint64_t *cas)"
+
+.PP
+References do_add_delta(), hash(), item_lock(), and item_unlock()\&.
+.SS "enum \fBstore_item_type\fP store_item (\fBitem\fP *item, intcomm, \fBconn\fP *c)"
+
+.PP
+References do_store_item(), hash(), ITEM_key, item_lock(), item_unlock(), and _stritem::nkey\&.
+.SS "void item_flush_expired (void)"
+
+.PP
+References cache_lock, do_item_flush_expired(), and mutex_unlock\&.
+.SS "char* item_cachedump (unsigned intslabs_clsid, unsigned intlimit, unsigned int *bytes)"
+
+.PP
+References cache_lock, do_item_cachedump(), and mutex_unlock\&.
+.SS "void item_stats (\fBADD_STAT\fPadd_stats, void *c)"
+
+.PP
+References cache_lock, do_item_stats(), and mutex_unlock\&.
+.PP
+Referenced by get_stats()\&.
+.SS "void item_stats_totals (\fBADD_STAT\fPadd_stats, void *c)"
+
+.PP
+References cache_lock, do_item_stats_totals(), and mutex_unlock\&.
+.PP
+Referenced by get_stats()\&.
+.SS "void item_stats_sizes (\fBADD_STAT\fPadd_stats, void *c)"
+
+.PP
+References cache_lock, do_item_stats_sizes(), and mutex_unlock\&.
+.PP
+Referenced by get_stats()\&.
+.SS "void STATS_LOCK (void)"
+
+.PP
+Referenced by assoc_init(), conn_new(), do_accept_new_conns(), do_item_link(), do_item_unlink(), do_item_unlink_nolock(), get_stats(), stats_prefix_dump(), stats_prefix_record_delete(), stats_prefix_record_get(), and stats_prefix_record_set()\&.
+.SS "void STATS_UNLOCK (void)"
+
+.PP
+Referenced by assoc_init(), conn_new(), do_accept_new_conns(), do_item_link(), do_item_unlink(), do_item_unlink_nolock(), get_stats(), stats_prefix_dump(), stats_prefix_record_delete(), stats_prefix_record_get(), and stats_prefix_record_set()\&.
+.SS "void threadlocal_stats_reset (void)"
+
+.PP
+References thread_stats::auth_cmds, thread_stats::auth_errors, thread_stats::bytes_read, thread_stats::bytes_written, slab_stats::cas_badval, slab_stats::cas_hits, thread_stats::cas_misses, thread_stats::conn_yields, slab_stats::decr_hits, thread_stats::decr_misses, slab_stats::delete_hits, thread_stats::delete_misses, thread_stats::flush_cmds, thread_stats::get_cmds, slab_stats::get_hits, thread_stats::get_misses, slab_stats::incr_hits, thread_stats::incr_misses, MAX_NUMBER_OF_SLAB_CLASSES, stats::mutex, settings::num_threads, slab_stats::set_cmds, thread_stats::slab_stats, LIBEVENT_THREAD::stats, thread_stats::touch_cmds, slab_stats::touch_hits, and thread_stats::touch_misses\&.
+.SS "void threadlocal_stats_aggregate (struct \fBthread_stats\fP *stats)"
+
+.PP
+References thread_stats::auth_cmds, thread_stats::auth_errors, thread_stats::bytes_read, thread_stats::bytes_written, slab_stats::cas_badval, slab_stats::cas_hits, thread_stats::cas_misses, thread_stats::conn_yields, slab_stats::decr_hits, thread_stats::decr_misses, slab_stats::delete_hits, thread_stats::delete_misses, thread_stats::flush_cmds, thread_stats::get_cmds, slab_stats::get_hits, thread_stats::get_misses, slab_stats::incr_hits, thread_stats::incr_misses, MAX_NUMBER_OF_SLAB_CLASSES, thread_stats::mutex, settings::num_threads, slab_stats::set_cmds, thread_stats::slab_stats, LIBEVENT_THREAD::stats, thread_stats::touch_cmds, slab_stats::touch_hits, and thread_stats::touch_misses\&.
+.SS "void slab_stats_aggregate (struct \fBthread_stats\fP *stats, struct \fBslab_stats\fP *out)"
+
+.PP
+References slab_stats::cas_badval, slab_stats::cas_hits, slab_stats::decr_hits, slab_stats::delete_hits, slab_stats::get_hits, slab_stats::incr_hits, MAX_NUMBER_OF_SLAB_CLASSES, slab_stats::set_cmds, thread_stats::slab_stats, and slab_stats::touch_hits\&.
+.SS "void thread_init (intnthreads, struct event_base *main_base)"
+
+.PP
+References LIBEVENT_DISPATCHER_THREAD::base, cache_lock, hashsize, LIBEVENT_THREAD::notify_receive_fd, LIBEVENT_THREAD::notify_send_fd, stats::reserved_fds, and LIBEVENT_DISPATCHER_THREAD::thread_id\&.
+.PP
+Referenced by main()\&.
+.SH "Variable Documentation"
+.PP 
+.SS "pthread_mutex_t cache_lock"
+
+.PP
+Referenced by do_add_delta(), do_item_alloc(), do_item_link(), do_item_unlink(), do_item_update(), item_cachedump(), item_flush_expired(), item_stats(), item_stats_evictions(), item_stats_reset(), item_stats_sizes(), item_stats_totals(), stop_assoc_maintenance_thread(), stop_slab_maintenance_thread(), and thread_init()\&.
+.SS "pthread_mutex_t conn_lock = PTHREAD_MUTEX_INITIALIZER"
+
+.PP
+Referenced by accept_new_conns()\&.
+.SS "pthread_mutex_t atomics_mutex = PTHREAD_MUTEX_INITIALIZER"
+
+.PP
+Referenced by refcount_decr(), and refcount_incr()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

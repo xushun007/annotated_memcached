@@ -1,0 +1,389 @@
+.TH "conn" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+conn \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBsfd\fP"
+.br
+.ti -1c
+.RI "\fBsasl_conn_t\fP * \fBsasl_conn\fP"
+.br
+.ti -1c
+.RI "enum \fBconn_states\fP \fBstate\fP"
+.br
+.ti -1c
+.RI "enum \fBbin_substates\fP \fBsubstate\fP"
+.br
+.ti -1c
+.RI "struct event \fBevent\fP"
+.br
+.ti -1c
+.RI "short \fBev_flags\fP"
+.br
+.ti -1c
+.RI "short \fBwhich\fP"
+.br
+.ti -1c
+.RI "char * \fBrbuf\fP"
+.br
+.ti -1c
+.RI "char * \fBrcurr\fP"
+.br
+.ti -1c
+.RI "int \fBrsize\fP"
+.br
+.ti -1c
+.RI "int \fBrbytes\fP"
+.br
+.ti -1c
+.RI "char * \fBwbuf\fP"
+.br
+.ti -1c
+.RI "char * \fBwcurr\fP"
+.br
+.ti -1c
+.RI "int \fBwsize\fP"
+.br
+.ti -1c
+.RI "int \fBwbytes\fP"
+.br
+.ti -1c
+.RI "enum \fBconn_states\fP \fBwrite_and_go\fP"
+.br
+.ti -1c
+.RI "void * \fBwrite_and_free\fP"
+.br
+.ti -1c
+.RI "char * \fBritem\fP"
+.br
+.ti -1c
+.RI "int \fBrlbytes\fP"
+.br
+.ti -1c
+.RI "void * \fBitem\fP"
+.br
+.ti -1c
+.RI "int \fBsbytes\fP"
+.br
+.ti -1c
+.RI "struct iovec * \fBiov\fP"
+.br
+.ti -1c
+.RI "int \fBiovsize\fP"
+.br
+.ti -1c
+.RI "int \fBiovused\fP"
+.br
+.ti -1c
+.RI "struct msghdr * \fBmsglist\fP"
+.br
+.ti -1c
+.RI "int \fBmsgsize\fP"
+.br
+.ti -1c
+.RI "int \fBmsgused\fP"
+.br
+.ti -1c
+.RI "int \fBmsgcurr\fP"
+.br
+.ti -1c
+.RI "int \fBmsgbytes\fP"
+.br
+.ti -1c
+.RI "\fBitem\fP ** \fBilist\fP"
+.br
+.ti -1c
+.RI "int \fBisize\fP"
+.br
+.ti -1c
+.RI "\fBitem\fP ** \fBicurr\fP"
+.br
+.ti -1c
+.RI "int \fBileft\fP"
+.br
+.ti -1c
+.RI "char ** \fBsuffixlist\fP"
+.br
+.ti -1c
+.RI "int \fBsuffixsize\fP"
+.br
+.ti -1c
+.RI "char ** \fBsuffixcurr\fP"
+.br
+.ti -1c
+.RI "int \fBsuffixleft\fP"
+.br
+.ti -1c
+.RI "enum \fBprotocol\fP \fBprotocol\fP"
+.br
+.ti -1c
+.RI "enum \fBnetwork_transport\fP \fBtransport\fP"
+.br
+.ti -1c
+.RI "int \fBrequest_id\fP"
+.br
+.ti -1c
+.RI "struct sockaddr \fBrequest_addr\fP"
+.br
+.ti -1c
+.RI "socklen_t \fBrequest_addr_size\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBhdrbuf\fP"
+.br
+.ti -1c
+.RI "int \fBhdrsize\fP"
+.br
+.ti -1c
+.RI "bool \fBnoreply\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   char * \fBbuffer\fP"
+.br
+.ti -1c
+.RI "   size_t \fBsize\fP"
+.br
+.ti -1c
+.RI "   size_t \fBoffset\fP"
+.br
+.ti -1c
+.RI "} \fBstats\fP"
+.br
+.ti -1c
+.RI "\fBprotocol_binary_request_header\fP \fBbinary_header\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBcas\fP"
+.br
+.ti -1c
+.RI "short \fBcmd\fP"
+.br
+.ti -1c
+.RI "int \fBopaque\fP"
+.br
+.ti -1c
+.RI "int \fBkeylen\fP"
+.br
+.ti -1c
+.RI "\fBconn\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "\fBLIBEVENT_THREAD\fP * \fBthread\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "int conn::sfd"
+
+.PP
+Referenced by conn_new(), do_accept_new_conns(), and do_add_delta()\&.
+.SS "\fBsasl_conn_t\fP* conn::sasl_conn"
+
+.SS "enum \fBconn_states\fP conn::state"
+
+.PP
+Referenced by conn_new()\&.
+.SS "enum \fBbin_substates\fP conn::substate"
+
+.SS "struct event conn::event"
+
+.PP
+Referenced by conn_new()\&.
+.SS "short conn::ev_flags"
+
+.PP
+Referenced by conn_new()\&.
+.SS "short conn::which"
+
+.SS "char* conn::rbuf"
+which events were just triggered 
+.PP
+Referenced by conn_new()\&.
+.SS "char* conn::rcurr"
+buffer to read commands into 
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::rsize"
+but if we parsed some already, this is where we stopped 
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::rbytes"
+total allocated size of rbuf 
+.PP
+Referenced by conn_new()\&.
+.SS "char* conn::wbuf"
+how much data, starting from rcur, do we have unparsed 
+.PP
+Referenced by conn_new()\&.
+.SS "char* conn::wcurr"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::wsize"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::wbytes"
+
+.PP
+Referenced by conn_new()\&.
+.SS "enum \fBconn_states\fP conn::write_and_go"
+which state to go into after finishing current write 
+.PP
+Referenced by conn_new()\&.
+.SS "void* conn::write_and_free"
+
+.PP
+Referenced by conn_new()\&.
+.SS "char* conn::ritem"
+free this memory after finishing writing 
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::rlbytes"
+when we read in an item's value, it goes here 
+.PP
+Referenced by conn_new()\&.
+.SS "void* conn::item"
+item is used to hold an item structure created after reading the command line of set/add/replace commands, but before we finished reading the actual data\&. The data is read into \fBITEM_data(item)\fP to avoid extra copying\&. 
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::sbytes"
+
+.SS "struct iovec* conn::iov"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::iovsize"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::iovused"
+
+.PP
+Referenced by conn_new()\&.
+.SS "struct msghdr* conn::msglist"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::msgsize"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::msgused"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::msgcurr"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::msgbytes"
+
+.SS "\fBitem\fP** conn::ilist"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::isize"
+
+.PP
+Referenced by conn_new()\&.
+.SS "\fBitem\fP** conn::icurr"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::ileft"
+
+.PP
+Referenced by conn_new()\&.
+.SS "char** conn::suffixlist"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::suffixsize"
+
+.PP
+Referenced by conn_new()\&.
+.SS "char** conn::suffixcurr"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::suffixleft"
+
+.PP
+Referenced by conn_new()\&.
+.SS "enum \fBprotocol\fP conn::protocol"
+
+.PP
+Referenced by conn_new()\&.
+.SS "enum \fBnetwork_transport\fP conn::transport"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::request_id"
+
+.SS "struct sockaddr conn::request_addr"
+
+.PP
+Referenced by conn_new()\&.
+.SS "socklen_t conn::request_addr_size"
+
+.PP
+Referenced by conn_new()\&.
+.SS "unsigned char* conn::hdrbuf"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::hdrsize"
+
+.PP
+Referenced by conn_new()\&.
+.SS "bool conn::noreply"
+
+.PP
+Referenced by conn_new()\&.
+.SS "char* conn::buffer"
+
+.SS "size_t conn::size"
+
+.SS "size_t conn::offset"
+
+.SS "struct { \&.\&.\&. }   conn::stats"
+
+.SS "\fBprotocol_binary_request_header\fP conn::binary_header"
+
+.SS "uint64_t conn::cas"
+
+.PP
+Referenced by do_store_item()\&.
+.SS "short conn::cmd"
+
+.PP
+Referenced by conn_new()\&.
+.SS "int conn::opaque"
+
+.SS "int conn::keylen"
+
+.SS "\fBconn\fP* conn::next"
+
+.PP
+Referenced by do_accept_new_conns()\&.
+.SS "\fBLIBEVENT_THREAD\fP* conn::thread"
+
+.PP
+Referenced by do_add_delta(), and do_store_item()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

@@ -1,0 +1,61 @@
+.TH "sasl_defs.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sasl_defs.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'memcached\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <sasl/saslplug\&.h>\fP
+.br
+
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int(* \fBsasl_callback_ft\fP )(void)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit_sasl\fP (void)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "char \fBmy_sasl_hostname\fP [1025]"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef int(* sasl_callback_ft)(void)"
+
+.SH "Function Documentation"
+.PP 
+.SS "void init_sasl (void)"
+
+.PP
+References my_sasl_hostname, SASL_OK, and settings::verbose\&.
+.PP
+Referenced by main()\&.
+.SH "Variable Documentation"
+.PP 
+.SS "char my_sasl_hostname[1025]"
+
+.PP
+Referenced by init_sasl()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

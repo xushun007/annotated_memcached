@@ -1,0 +1,353 @@
+.TH "trace.h" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+trace.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMEMCACHED_ASSOC_DELETE\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ASSOC_DELETE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ASSOC_FIND\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ASSOC_FIND_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ASSOC_INSERT\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ASSOC_INSERT_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_ADD\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_ADD_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_APPEND\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_APPEND_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_CAS\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_CAS_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_DECR\fP(arg0, arg1, arg2, arg3)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_DECR_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_DELETE\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_DELETE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_GET\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_GET_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_TOUCH\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_TOUCH_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_INCR\fP(arg0, arg1, arg2, arg3)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_INCR_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_PREPEND\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_PREPEND_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_REPLACE\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_REPLACE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_SET\fP(arg0, arg1, arg2, arg3, arg4)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_COMMAND_SET_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_ALLOCATE\fP(arg0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_ALLOCATE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_CREATE\fP(arg0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_CREATE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_DESTROY\fP(arg0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_DESTROY_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_DISPATCH\fP(arg0, arg1)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_DISPATCH_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_RELEASE\fP(arg0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_CONN_RELEASE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_LINK\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_LINK_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_REMOVE\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_REMOVE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_REPLACE\fP(arg0, arg1, arg2, arg3, arg4, arg5)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_REPLACE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_UNLINK\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_UNLINK_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_UPDATE\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_ITEM_UPDATE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_PROCESS_COMMAND_END\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_PROCESS_COMMAND_END_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_PROCESS_COMMAND_START\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_PROCESS_COMMAND_START_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_ALLOCATE\fP(arg0, arg1, arg2, arg3)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_ALLOCATE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_ALLOCATE_FAILED\fP(arg0, arg1)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_ALLOCATE_FAILED_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_FREE\fP(arg0, arg1, arg2)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_FREE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_SLABCLASS_ALLOCATE\fP(arg0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_SLABCLASS_ALLOCATE_ENABLED\fP()   (0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_SLABCLASS_ALLOCATE_FAILED\fP(arg0)"
+.br
+.ti -1c
+.RI "#define \fBMEMCACHED_SLABS_SLABCLASS_ALLOCATE_FAILED_ENABLED\fP()   (0)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MEMCACHED_ASSOC_DELETE(arg0, arg1, arg2)"
+
+.PP
+Referenced by assoc_delete()\&.
+.SS "#define MEMCACHED_ASSOC_DELETE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_ASSOC_FIND(arg0, arg1, arg2)"
+
+.PP
+Referenced by assoc_find()\&.
+.SS "#define MEMCACHED_ASSOC_FIND_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_ASSOC_INSERT(arg0, arg1, arg2)"
+
+.PP
+Referenced by assoc_insert()\&.
+.SS "#define MEMCACHED_ASSOC_INSERT_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_ADD(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_ADD_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_APPEND(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_APPEND_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_CAS(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_CAS_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_DECR(arg0, arg1, arg2, arg3)"
+
+.PP
+Referenced by do_add_delta()\&.
+.SS "#define MEMCACHED_COMMAND_DECR_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_DELETE(arg0, arg1, arg2)"
+
+.SS "#define MEMCACHED_COMMAND_DELETE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_GET(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_GET_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_TOUCH(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_TOUCH_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_INCR(arg0, arg1, arg2, arg3)"
+
+.PP
+Referenced by do_add_delta()\&.
+.SS "#define MEMCACHED_COMMAND_INCR_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_PREPEND(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_PREPEND_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_REPLACE(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_REPLACE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_COMMAND_SET(arg0, arg1, arg2, arg3, arg4)"
+
+.SS "#define MEMCACHED_COMMAND_SET_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_CONN_ALLOCATE(arg0)"
+
+.PP
+Referenced by conn_new()\&.
+.SS "#define MEMCACHED_CONN_ALLOCATE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_CONN_CREATE(arg0)"
+
+.PP
+Referenced by conn_new()\&.
+.SS "#define MEMCACHED_CONN_CREATE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_CONN_DESTROY(arg0)"
+
+.SS "#define MEMCACHED_CONN_DESTROY_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_CONN_DISPATCH(arg0, arg1)"
+
+.PP
+Referenced by dispatch_conn_new()\&.
+.SS "#define MEMCACHED_CONN_DISPATCH_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_CONN_RELEASE(arg0)"
+
+.SS "#define MEMCACHED_CONN_RELEASE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_ITEM_LINK(arg0, arg1, arg2)"
+
+.PP
+Referenced by do_item_link()\&.
+.SS "#define MEMCACHED_ITEM_LINK_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_ITEM_REMOVE(arg0, arg1, arg2)"
+
+.PP
+Referenced by do_item_remove()\&.
+.SS "#define MEMCACHED_ITEM_REMOVE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_ITEM_REPLACE(arg0, arg1, arg2, arg3, arg4, arg5)"
+
+.PP
+Referenced by do_item_replace()\&.
+.SS "#define MEMCACHED_ITEM_REPLACE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_ITEM_UNLINK(arg0, arg1, arg2)"
+
+.PP
+Referenced by do_item_unlink(), and do_item_unlink_nolock()\&.
+.SS "#define MEMCACHED_ITEM_UNLINK_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_ITEM_UPDATE(arg0, arg1, arg2)"
+
+.PP
+Referenced by do_item_update()\&.
+.SS "#define MEMCACHED_ITEM_UPDATE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_PROCESS_COMMAND_END(arg0, arg1, arg2)"
+
+.SS "#define MEMCACHED_PROCESS_COMMAND_END_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_PROCESS_COMMAND_START(arg0, arg1, arg2)"
+
+.SS "#define MEMCACHED_PROCESS_COMMAND_START_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_SLABS_ALLOCATE(arg0, arg1, arg2, arg3)"
+
+.SS "#define MEMCACHED_SLABS_ALLOCATE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_SLABS_ALLOCATE_FAILED(arg0, arg1)"
+
+.SS "#define MEMCACHED_SLABS_ALLOCATE_FAILED_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_SLABS_FREE(arg0, arg1, arg2)"
+
+.SS "#define MEMCACHED_SLABS_FREE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_SLABS_SLABCLASS_ALLOCATE(arg0)"
+
+.SS "#define MEMCACHED_SLABS_SLABCLASS_ALLOCATE_ENABLED()   (0)"
+
+.SS "#define MEMCACHED_SLABS_SLABCLASS_ALLOCATE_FAILED(arg0)"
+
+.SS "#define MEMCACHED_SLABS_SLABCLASS_ALLOCATE_FAILED_ENABLED()   (0)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

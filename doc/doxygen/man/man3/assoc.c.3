@@ -1,0 +1,159 @@
+.TH "assoc.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+assoc.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'memcached\&.h'\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <sys/signal\&.h>\fP
+.br
+\fC#include <sys/resource\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBhashsize\fP(n)   ((\fBub4\fP)1<<(n))"
+.br
+.ti -1c
+.RI "#define \fBhashmask\fP(n)   (\fBhashsize\fP(n)-1)"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_HASH_BULK_MOVE\fP   1"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned long int \fBub4\fP"
+.br
+.ti -1c
+.RI "typedef unsigned char \fBub1\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBassoc_init\fP (const int hashtable_init)"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBassoc_find\fP (const char *key, const size_t nkey, const uint32_t hv)"
+.br
+.ti -1c
+.RI "int \fBassoc_insert\fP (\fBitem\fP *it, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBassoc_delete\fP (const char *key, const size_t nkey, const uint32_t hv)"
+.br
+.ti -1c
+.RI "int \fBstart_assoc_maintenance_thread\fP ()"
+.br
+.ti -1c
+.RI "void \fBstop_assoc_maintenance_thread\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBhashpower\fP = \fBHASHPOWER_DEFAULT\fP"
+.br
+.ti -1c
+.RI "int \fBhash_bulk_move\fP = \fBDEFAULT_HASH_BULK_MOVE\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define hashsize(n)   ((\fBub4\fP)1<<(n))"
+
+.PP
+Referenced by assoc_init(), and assoc_insert()\&.
+.SS "#define hashmask(n)   (\fBhashsize\fP(n)-1)"
+
+.PP
+Referenced by assoc_find(), and assoc_insert()\&.
+.SS "#define DEFAULT_HASH_BULK_MOVE   1"
+
+.PP
+Referenced by start_assoc_maintenance_thread()\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef unsigned long int \fBub4\fP"
+
+.SS "typedef unsigned char \fBub1\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "void assoc_init (const inthashtable_init)"
+
+.PP
+References stats::hash_bytes, stats::hash_power_level, hashpower, hashsize, STATS_LOCK(), and STATS_UNLOCK()\&.
+.PP
+Referenced by main()\&.
+.SS "\fBitem\fP* assoc_find (const char *key, const size_tnkey, const uint32_thv)"
+
+.PP
+References _stritem::h_next, hashmask, hashpower, ITEM_key, MEMCACHED_ASSOC_FIND, and _stritem::nkey\&.
+.PP
+Referenced by do_item_get()\&.
+.SS "int assoc_insert (\fBitem\fP *it, const uint32_thv)"
+
+.PP
+References _stritem::h_next, hashmask, hashpower, hashsize, ITEM_key, MEMCACHED_ASSOC_INSERT, and _stritem::nkey\&.
+.PP
+Referenced by do_item_link()\&.
+.SS "void assoc_delete (const char *key, const size_tnkey, const uint32_thv)"
+
+.PP
+References _stritem::h_next, and MEMCACHED_ASSOC_DELETE\&.
+.PP
+Referenced by do_item_unlink(), and do_item_unlink_nolock()\&.
+.SS "int start_assoc_maintenance_thread (void)"
+
+.PP
+References DEFAULT_HASH_BULK_MOVE\&.
+.PP
+Referenced by main()\&.
+.SS "void stop_assoc_maintenance_thread (void)"
+
+.PP
+References cache_lock, and mutex_unlock\&.
+.PP
+Referenced by main()\&.
+.SH "Variable Documentation"
+.PP 
+.SS "unsigned int hashpower = \fBHASHPOWER_DEFAULT\fP"
+
+.PP
+Referenced by assoc_find(), assoc_init(), assoc_insert(), item_lock(), item_trylock(), and item_unlock()\&.
+.SS "int hash_bulk_move = \fBDEFAULT_HASH_BULK_MOVE\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

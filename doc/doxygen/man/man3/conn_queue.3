@@ -1,0 +1,38 @@
+.TH "conn_queue" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+conn_queue \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBCQ_ITEM\fP * \fBhead\fP"
+.br
+.ti -1c
+.RI "\fBCQ_ITEM\fP * \fBtail\fP"
+.br
+.ti -1c
+.RI "pthread_mutex_t \fBlock\fP"
+.br
+.ti -1c
+.RI "pthread_cond_t \fBcond\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBCQ_ITEM\fP* conn_queue::head"
+
+.SS "\fBCQ_ITEM\fP* conn_queue::tail"
+
+.SS "pthread_mutex_t conn_queue::lock"
+
+.SS "pthread_cond_t conn_queue::cond"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

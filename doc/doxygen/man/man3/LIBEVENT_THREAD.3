@@ -1,0 +1,71 @@
+.TH "LIBEVENT_THREAD" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LIBEVENT_THREAD \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "pthread_t \fBthread_id\fP"
+.br
+.ti -1c
+.RI "struct event_base * \fBbase\fP"
+.br
+.ti -1c
+.RI "struct event \fBnotify_event\fP"
+.br
+.ti -1c
+.RI "int \fBnotify_receive_fd\fP"
+.br
+.ti -1c
+.RI "int \fBnotify_send_fd\fP"
+.br
+.ti -1c
+.RI "struct \fBthread_stats\fP \fBstats\fP"
+.br
+.ti -1c
+.RI "struct \fBconn_queue\fP * \fBnew_conn_queue\fP"
+.br
+.ti -1c
+.RI "\fBcache_t\fP * \fBsuffix_cache\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBitem_lock_type\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "pthread_t LIBEVENT_THREAD::thread_id"
+
+.SS "struct event_base* LIBEVENT_THREAD::base"
+
+.SS "struct event LIBEVENT_THREAD::notify_event"
+
+.SS "int LIBEVENT_THREAD::notify_receive_fd"
+
+.PP
+Referenced by thread_init()\&.
+.SS "int LIBEVENT_THREAD::notify_send_fd"
+
+.PP
+Referenced by thread_init()\&.
+.SS "struct \fBthread_stats\fP LIBEVENT_THREAD::stats"
+
+.PP
+Referenced by do_add_delta(), do_store_item(), threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "struct \fBconn_queue\fP* LIBEVENT_THREAD::new_conn_queue"
+
+.SS "\fBcache_t\fP* LIBEVENT_THREAD::suffix_cache"
+
+.SS "uint8_t LIBEVENT_THREAD::item_lock_type"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

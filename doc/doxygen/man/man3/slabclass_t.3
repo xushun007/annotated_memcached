@@ -1,0 +1,69 @@
+.TH "slabclass_t" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slabclass_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBsize\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBperslab\fP"
+.br
+.ti -1c
+.RI "void * \fBslots\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBsl_curr\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBslabs\fP"
+.br
+.ti -1c
+.RI "void ** \fBslab_list\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBlist_size\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBkilling\fP"
+.br
+.ti -1c
+.RI "size_t \fBrequested\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned int slabclass_t::size"
+
+.PP
+Referenced by slabs_init()\&.
+.SS "unsigned int slabclass_t::perslab"
+
+.PP
+Referenced by slabs_init()\&.
+.SS "void* slabclass_t::slots"
+
+.SS "unsigned int slabclass_t::sl_curr"
+
+.SS "unsigned int slabclass_t::slabs"
+
+.SS "void** slabclass_t::slab_list"
+
+.SS "unsigned int slabclass_t::list_size"
+
+.SS "unsigned int slabclass_t::killing"
+
+.SS "size_t slabclass_t::requested"
+
+.PP
+Referenced by slabs_adjust_mem_requested()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

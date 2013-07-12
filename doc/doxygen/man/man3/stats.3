@@ -1,0 +1,187 @@
+.TH "stats" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stats \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "pthread_mutex_t \fBmutex\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBcurr_items\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBtotal_items\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBcurr_bytes\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBcurr_conns\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBtotal_conns\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBrejected_conns\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBreserved_fds\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBconn_structs\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBget_cmds\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBset_cmds\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBtouch_cmds\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBget_hits\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBget_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBtouch_hits\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBtouch_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBevictions\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBreclaimed\fP"
+.br
+.ti -1c
+.RI "time_t \fBstarted\fP"
+.br
+.ti -1c
+.RI "bool \fBaccepting_conns\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBlisten_disabled_num\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBhash_power_level\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBhash_bytes\fP"
+.br
+.ti -1c
+.RI "bool \fBhash_is_expanding\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBexpired_unfetched\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBevicted_unfetched\fP"
+.br
+.ti -1c
+.RI "bool \fBslab_reassign_running\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBslabs_moved\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Global stats\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "pthread_mutex_t stats::mutex"
+
+.PP
+Referenced by threadlocal_stats_reset()\&.
+.SS "unsigned int stats::curr_items"
+
+.PP
+Referenced by do_item_link(), do_item_unlink(), do_item_unlink_nolock(), and get_stats()\&.
+.SS "unsigned int stats::total_items"
+
+.PP
+Referenced by do_item_link(), and get_stats()\&.
+.SS "uint64_t stats::curr_bytes"
+
+.PP
+Referenced by do_item_link(), do_item_unlink(), do_item_unlink_nolock(), and get_stats()\&.
+.SS "unsigned int stats::curr_conns"
+
+.PP
+Referenced by conn_new(), and main()\&.
+.SS "unsigned int stats::total_conns"
+
+.PP
+Referenced by conn_new()\&.
+.SS "uint64_t stats::rejected_conns"
+
+.SS "unsigned int stats::reserved_fds"
+
+.PP
+Referenced by main(), and thread_init()\&.
+.SS "unsigned int stats::conn_structs"
+
+.PP
+Referenced by conn_new()\&.
+.SS "uint64_t stats::get_cmds"
+
+.SS "uint64_t stats::set_cmds"
+
+.SS "uint64_t stats::touch_cmds"
+
+.SS "uint64_t stats::get_hits"
+
+.SS "uint64_t stats::get_misses"
+
+.SS "uint64_t stats::touch_hits"
+
+.SS "uint64_t stats::touch_misses"
+
+.SS "uint64_t stats::evictions"
+
+.SS "uint64_t stats::reclaimed"
+
+.SS "time_t stats::started"
+
+.SS "bool stats::accepting_conns"
+
+.PP
+Referenced by do_accept_new_conns()\&.
+.SS "uint64_t stats::listen_disabled_num"
+
+.PP
+Referenced by do_accept_new_conns()\&.
+.SS "unsigned int stats::hash_power_level"
+
+.PP
+Referenced by assoc_init()\&.
+.SS "uint64_t stats::hash_bytes"
+
+.PP
+Referenced by assoc_init()\&.
+.SS "bool stats::hash_is_expanding"
+
+.SS "uint64_t stats::expired_unfetched"
+
+.SS "uint64_t stats::evicted_unfetched"
+
+.SS "bool stats::slab_reassign_running"
+
+.SS "uint64_t stats::slabs_moved"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

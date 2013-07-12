@@ -1,0 +1,80 @@
+.TH "sasl_defs.h" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sasl_defs.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_SASL_MECH_LEN\fP   32"
+.br
+.ti -1c
+.RI "#define \fBinit_sasl\fP()   {}"
+.br
+.ti -1c
+.RI "#define \fBsasl_dispose\fP(x)   {}"
+.br
+.ti -1c
+.RI "#define \fBsasl_server_new\fP(a, b, c, d, e, f, g, h)   1"
+.br
+.ti -1c
+.RI "#define \fBsasl_listmech\fP(a, b, c, d, e, f, g, h)   1"
+.br
+.ti -1c
+.RI "#define \fBsasl_server_start\fP(a, b, c, d, e, f)   1"
+.br
+.ti -1c
+.RI "#define \fBsasl_server_step\fP(a, b, c, d, e)   1"
+.br
+.ti -1c
+.RI "#define \fBsasl_getprop\fP(a, b, c)   {}"
+.br
+.ti -1c
+.RI "#define \fBSASL_OK\fP   0"
+.br
+.ti -1c
+.RI "#define \fBSASL_CONTINUE\fP   -1"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef void * \fBsasl_conn_t\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAX_SASL_MECH_LEN   32"
+
+.SS "#define init_sasl(void)   {}"
+
+.SS "#define sasl_dispose(x)   {}"
+
+.SS "#define sasl_server_new(a, b, c, d, e, f, g, h)   1"
+
+.SS "#define sasl_listmech(a, b, c, d, e, f, g, h)   1"
+
+.SS "#define sasl_server_start(a, b, c, d, e, f)   1"
+
+.SS "#define sasl_server_step(a, b, c, d, e)   1"
+
+.SS "#define sasl_getprop(a, b, c)   {}"
+
+.SS "#define SASL_OK   0"
+
+.PP
+Referenced by init_sasl()\&.
+.SS "#define SASL_CONTINUE   -1"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef void* \fBsasl_conn_t\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

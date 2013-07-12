@@ -1,0 +1,205 @@
+.TH "settings" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+settings \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBmaxbytes\fP"
+.br
+.ti -1c
+.RI "int \fBmaxconns\fP"
+.br
+.ti -1c
+.RI "int \fBport\fP"
+.br
+.ti -1c
+.RI "int \fBudpport\fP"
+.br
+.ti -1c
+.RI "char * \fBinter\fP"
+.br
+.ti -1c
+.RI "int \fBverbose\fP"
+.br
+.ti -1c
+.RI "\fBrel_time_t\fP \fBoldest_live\fP"
+.br
+.ti -1c
+.RI "int \fBevict_to_free\fP"
+.br
+.ti -1c
+.RI "char * \fBsocketpath\fP"
+.br
+.ti -1c
+.RI "int \fBaccess\fP"
+.br
+.ti -1c
+.RI "double \fBfactor\fP"
+.br
+.ti -1c
+.RI "int \fBchunk_size\fP"
+.br
+.ti -1c
+.RI "int \fBnum_threads\fP"
+.br
+.ti -1c
+.RI "int \fBnum_threads_per_udp\fP"
+.br
+.ti -1c
+.RI "char \fBprefix_delimiter\fP"
+.br
+.ti -1c
+.RI "int \fBdetail_enabled\fP"
+.br
+.ti -1c
+.RI "int \fBreqs_per_event\fP"
+.br
+.ti -1c
+.RI "bool \fBuse_cas\fP"
+.br
+.ti -1c
+.RI "enum \fBprotocol\fP \fBbinding_protocol\fP"
+.br
+.ti -1c
+.RI "int \fBbacklog\fP"
+.br
+.ti -1c
+.RI "int \fBitem_size_max\fP"
+.br
+.ti -1c
+.RI "bool \fBsasl\fP"
+.br
+.ti -1c
+.RI "bool \fBmaxconns_fast\fP"
+.br
+.ti -1c
+.RI "bool \fBslab_reassign\fP"
+.br
+.ti -1c
+.RI "int \fBslab_automove\fP"
+.br
+.ti -1c
+.RI "int \fBhashpower_init\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Globally accessible settings as derived from the commandline\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "size_t settings::maxbytes"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::maxconns"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::port"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::udpport"
+
+.PP
+Referenced by main()\&.
+.SS "char* settings::inter"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::verbose"
+
+.PP
+Referenced by conn_new(), do_item_get(), do_store_item(), init_sasl(), main(), and slabs_init()\&.
+.SS "\fBrel_time_t\fP settings::oldest_live"
+
+.PP
+Referenced by do_item_alloc(), do_item_flush_expired(), and do_item_get()\&.
+.SS "int settings::evict_to_free"
+
+.PP
+Referenced by do_item_alloc(), and main()\&.
+.SS "char* settings::socketpath"
+
+.PP
+Referenced by conn_new(), and main()\&.
+.SS "int settings::access"
+
+.PP
+Referenced by main()\&.
+.SS "double settings::factor"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::chunk_size"
+
+.PP
+Referenced by main(), and slabs_init()\&.
+.SS "int settings::num_threads"
+
+.PP
+Referenced by dispatch_conn_new(), main(), switch_item_lock_type(), threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "int settings::num_threads_per_udp"
+
+.PP
+Referenced by main()\&.
+.SS "char settings::prefix_delimiter"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::detail_enabled"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::reqs_per_event"
+
+.PP
+Referenced by main()\&.
+.SS "bool settings::use_cas"
+
+.PP
+Referenced by do_add_delta(), do_item_alloc(), do_item_link(), item_size_ok(), and main()\&.
+.SS "enum \fBprotocol\fP settings::binding_protocol"
+
+.PP
+Referenced by conn_new(), and main()\&.
+.SS "int settings::backlog"
+
+.PP
+Referenced by do_accept_new_conns(), and main()\&.
+.SS "int settings::item_size_max"
+
+.PP
+Referenced by main(), and slabs_init()\&.
+.SS "bool settings::sasl"
+
+.PP
+Referenced by main()\&.
+.SS "bool settings::maxconns_fast"
+
+.PP
+Referenced by main()\&.
+.SS "bool settings::slab_reassign"
+
+.PP
+Referenced by main()\&.
+.SS "int settings::slab_automove"
+
+.PP
+Referenced by do_item_alloc(), and main()\&.
+.SS "int settings::hashpower_init"
+
+.PP
+Referenced by main()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

@@ -1,0 +1,99 @@
+.TH "stats.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stats.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'memcached\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fB_prefix_stats\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBPREFIX_HASH_SIZE\fP   256"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fB_prefix_stats\fP \fBPREFIX_STATS\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBstats_prefix_init\fP ()"
+.br
+.ti -1c
+.RI "void \fBstats_prefix_clear\fP ()"
+.br
+.ti -1c
+.RI "void \fBstats_prefix_record_get\fP (const char *key, const size_t nkey, const bool is_hit)"
+.br
+.ti -1c
+.RI "void \fBstats_prefix_record_delete\fP (const char *key, const size_t nkey)"
+.br
+.ti -1c
+.RI "void \fBstats_prefix_record_set\fP (const char *key, const size_t nkey)"
+.br
+.ti -1c
+.RI "char * \fBstats_prefix_dump\fP (int *length)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define PREFIX_HASH_SIZE   256"
+
+.PP
+Referenced by stats_prefix_clear(), and stats_prefix_dump()\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fB_prefix_stats\fP \fBPREFIX_STATS\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "void stats_prefix_init (void)"
+
+.SS "void stats_prefix_clear (void)"
+
+.PP
+References _prefix_stats::next, _prefix_stats::prefix, and PREFIX_HASH_SIZE\&.
+.SS "void stats_prefix_record_get (const char *key, const size_tnkey, const boolis_hit)"
+
+.PP
+References _prefix_stats::num_gets, _prefix_stats::num_hits, STATS_LOCK(), and STATS_UNLOCK()\&.
+.SS "void stats_prefix_record_delete (const char *key, const size_tnkey)"
+
+.PP
+References _prefix_stats::num_deletes, STATS_LOCK(), and STATS_UNLOCK()\&.
+.SS "void stats_prefix_record_set (const char *key, const size_tnkey)"
+
+.PP
+References _prefix_stats::num_sets, STATS_LOCK(), and STATS_UNLOCK()\&.
+.SS "char* stats_prefix_dump (int *length)"
+
+.PP
+References _prefix_stats::next, _prefix_stats::num_deletes, _prefix_stats::num_gets, _prefix_stats::num_hits, _prefix_stats::num_sets, _prefix_stats::prefix, PREFIX_HASH_SIZE, STATS_LOCK(), and STATS_UNLOCK()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

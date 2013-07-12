@@ -1,0 +1,59 @@
+.TH "protocol_binary_request_set" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+protocol_binary_request_set \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <protocol_binary\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   \fBprotocol_binary_request_header\fP \fBheader\fP"
+.br
+.ti -1c
+.RI "   struct {"
+.br
+.ti -1c
+.RI "      uint32_t \fBflags\fP"
+.br
+.ti -1c
+.RI "      uint32_t \fBexpiration\fP"
+.br
+.ti -1c
+.RI "   } \fBbody\fP"
+.br
+.ti -1c
+.RI "} \fBmessage\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBbytes\fP [sizeof(\fBprotocol_binary_request_header\fP)+8]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of the packet used by set, add and replace See section 4 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBprotocol_binary_request_header\fP protocol_binary_request_set::header"
+
+.SS "uint32_t protocol_binary_request_set::flags"
+
+.SS "uint32_t protocol_binary_request_set::expiration"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_set::body"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_set::message"
+
+.SS "uint8_t protocol_binary_request_set::bytes[sizeof(\fBprotocol_binary_request_header\fP)+8]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

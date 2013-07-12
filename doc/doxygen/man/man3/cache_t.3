@@ -1,0 +1,79 @@
+.TH "cache_t" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+cache_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <cache\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "pthread_mutex_t \fBmutex\fP"
+.br
+.ti -1c
+.RI "char * \fBname\fP"
+.br
+.ti -1c
+.RI "void ** \fBptr\fP"
+.br
+.ti -1c
+.RI "size_t \fBbufsize\fP"
+.br
+.ti -1c
+.RI "int \fBfreetotal\fP"
+.br
+.ti -1c
+.RI "int \fBfreecurr\fP"
+.br
+.ti -1c
+.RI "\fBcache_constructor_t\fP * \fBconstructor\fP"
+.br
+.ti -1c
+.RI "\fBcache_destructor_t\fP * \fBdestructor\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of the structure to keep track of the internal details of the cache allocator\&. Touching any of these variables results in undefined behavior\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "pthread_mutex_t cache_t::mutex"
+Mutex to protect access to the structure 
+.PP
+Referenced by cache_alloc(), cache_create(), cache_destroy(), and cache_free()\&.
+.SS "char* cache_t::name"
+Name of the cache objects in this cache (provided by the caller) 
+.PP
+Referenced by cache_create(), and cache_destroy()\&.
+.SS "void** cache_t::ptr"
+List of pointers to available buffers in this cache 
+.PP
+Referenced by cache_alloc(), cache_create(), cache_destroy(), and cache_free()\&.
+.SS "size_t cache_t::bufsize"
+The size of each element in this cache 
+.PP
+Referenced by cache_alloc(), cache_create(), and cache_free()\&.
+.SS "int cache_t::freetotal"
+The capacity of the list of elements 
+.PP
+Referenced by cache_create(), and cache_free()\&.
+.SS "int cache_t::freecurr"
+The current number of free elements 
+.PP
+Referenced by cache_alloc(), cache_destroy(), and cache_free()\&.
+.SS "\fBcache_constructor_t\fP* cache_t::constructor"
+The constructor to be called each time we allocate more memory 
+.PP
+Referenced by cache_alloc(), and cache_create()\&.
+.SS "\fBcache_destructor_t\fP* cache_t::destructor"
+The destructor to be called each time before we release memory 
+.PP
+Referenced by cache_create(), cache_destroy(), and cache_free()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

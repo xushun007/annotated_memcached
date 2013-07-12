@@ -1,0 +1,81 @@
+.TH "protocol_binary_request_header" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+protocol_binary_request_header \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <protocol_binary\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   uint8_t \fBmagic\fP"
+.br
+.ti -1c
+.RI "   uint8_t \fBopcode\fP"
+.br
+.ti -1c
+.RI "   uint16_t \fBkeylen\fP"
+.br
+.ti -1c
+.RI "   uint8_t \fBextlen\fP"
+.br
+.ti -1c
+.RI "   uint8_t \fBdatatype\fP"
+.br
+.ti -1c
+.RI "   uint16_t \fBreserved\fP"
+.br
+.ti -1c
+.RI "   uint32_t \fBbodylen\fP"
+.br
+.ti -1c
+.RI "   uint32_t \fBopaque\fP"
+.br
+.ti -1c
+.RI "   uint64_t \fBcas\fP"
+.br
+.ti -1c
+.RI "} \fBrequest\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBbytes\fP [24]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of the header structure for a request packet\&. See section 2 
+.SH "Member Data Documentation"
+.PP 
+.SS "uint8_t protocol_binary_request_header::magic"
+
+.SS "uint8_t protocol_binary_request_header::opcode"
+
+.SS "uint16_t protocol_binary_request_header::keylen"
+
+.SS "uint8_t protocol_binary_request_header::extlen"
+
+.SS "uint8_t protocol_binary_request_header::datatype"
+
+.SS "uint16_t protocol_binary_request_header::reserved"
+
+.SS "uint32_t protocol_binary_request_header::bodylen"
+
+.SS "uint32_t protocol_binary_request_header::opaque"
+
+.SS "uint64_t protocol_binary_request_header::cas"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_header::request"
+
+.SS "uint8_t protocol_binary_request_header::bytes[24]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

@@ -1,0 +1,80 @@
+.TH "util.h" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+util.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB__gcc_attribute__\fP(x)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBsafe_strtoull\fP (const char *str, uint64_t *out)"
+.br
+.ti -1c
+.RI "bool \fBsafe_strtoll\fP (const char *str, int64_t *out)"
+.br
+.ti -1c
+.RI "bool \fBsafe_strtoul\fP (const char *str, uint32_t *out)"
+.br
+.ti -1c
+.RI "bool \fBsafe_strtol\fP (const char *str, int32_t *out)"
+.br
+.ti -1c
+.RI "uint64_t \fBhtonll\fP (uint64_t)"
+.br
+.ti -1c
+.RI "uint64_t \fBntohll\fP (uint64_t)"
+.br
+.ti -1c
+.RI "void \fBvperror\fP (const char *fmt,\&.\&.\&.) \fB__gcc_attribute__\fP((format(printf"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define __gcc_attribute__(x)"
+
+.SH "Function Documentation"
+.PP 
+.SS "bool safe_strtoull (const char *str, uint64_t *out)"
+
+.PP
+References xisspace\&.
+.PP
+Referenced by do_add_delta()\&.
+.SS "bool safe_strtoll (const char *str, int64_t *out)"
+
+.PP
+References xisspace\&.
+.SS "bool safe_strtoul (const char *str, uint32_t *out)"
+
+.PP
+References xisspace\&.
+.SS "bool safe_strtol (const char *str, int32_t *out)"
+
+.PP
+References xisspace\&.
+.SS "uint64_t htonll (uint64_t)"
+
+.SS "uint64_t ntohll (uint64_t)"
+
+.SS "void vperror (const char *fmt, \&.\&.\&.)"
+Vararg variant of perror that makes for more useful error messages when reporting with parameters\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfmt\fP a printf format 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

@@ -1,0 +1,59 @@
+.TH "slab_rebalance" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slab_rebalance \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "void * \fBslab_start\fP"
+.br
+.ti -1c
+.RI "void * \fBslab_end\fP"
+.br
+.ti -1c
+.RI "void * \fBslab_pos\fP"
+.br
+.ti -1c
+.RI "int \fBs_clsid\fP"
+.br
+.ti -1c
+.RI "int \fBd_clsid\fP"
+.br
+.ti -1c
+.RI "int \fBbusy_items\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBdone\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "void* slab_rebalance::slab_start"
+
+.PP
+Referenced by do_item_get(), and start_slab_maintenance_thread()\&.
+.SS "void* slab_rebalance::slab_end"
+
+.PP
+Referenced by do_item_get()\&.
+.SS "void* slab_rebalance::slab_pos"
+
+.SS "int slab_rebalance::s_clsid"
+
+.SS "int slab_rebalance::d_clsid"
+
+.SS "int slab_rebalance::busy_items"
+
+.SS "uint8_t slab_rebalance::done"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

@@ -1,0 +1,58 @@
+.TH "conn_queue_item" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+conn_queue_item \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBsfd\fP"
+.br
+.ti -1c
+.RI "enum \fBconn_states\fP \fBinit_state\fP"
+.br
+.ti -1c
+.RI "int \fBevent_flags\fP"
+.br
+.ti -1c
+.RI "int \fBread_buffer_size\fP"
+.br
+.ti -1c
+.RI "enum \fBnetwork_transport\fP \fBtransport\fP"
+.br
+.ti -1c
+.RI "\fBCQ_ITEM\fP * \fBnext\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "int conn_queue_item::sfd"
+
+.PP
+Referenced by dispatch_conn_new()\&.
+.SS "enum \fBconn_states\fP conn_queue_item::init_state"
+
+.PP
+Referenced by dispatch_conn_new()\&.
+.SS "int conn_queue_item::event_flags"
+
+.PP
+Referenced by dispatch_conn_new()\&.
+.SS "int conn_queue_item::read_buffer_size"
+
+.PP
+Referenced by dispatch_conn_new()\&.
+.SS "enum \fBnetwork_transport\fP conn_queue_item::transport"
+
+.PP
+Referenced by dispatch_conn_new()\&.
+.SS "\fBCQ_ITEM\fP* conn_queue_item::next"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

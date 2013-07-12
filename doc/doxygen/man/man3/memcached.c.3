@@ -1,0 +1,271 @@
+.TH "memcached.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+memcached.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'memcached\&.h'\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <sys/un\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <sys/resource\&.h>\fP
+.br
+\fC#include <sys/uio\&.h>\fP
+.br
+\fC#include <ctype\&.h>\fP
+.br
+\fC#include <stdarg\&.h>\fP
+.br
+\fC#include <pwd\&.h>\fP
+.br
+\fC#include <sys/mman\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include <netinet/tcp\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include <sysexits\&.h>\fP
+.br
+\fC#include <stddef\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtoken_s\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_P1003_1B_VISIBLE\fP"
+.br
+.ti -1c
+.RI "#define \fB__need_IOV_MAX\fP"
+.br
+.ti -1c
+.RI "#define \fBREALTIME_MAXDELTA\fP   60*60*24*30"
+.br
+.ti -1c
+.RI "#define \fBCOMMAND_TOKEN\fP   0"
+.br
+.ti -1c
+.RI "#define \fBSUBCOMMAND_TOKEN\fP   1"
+.br
+.ti -1c
+.RI "#define \fBKEY_TOKEN\fP   1"
+.br
+.ti -1c
+.RI "#define \fBMAX_TOKENS\fP   8"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBtoken_s\fP \fBtoken_t\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBtry_read_result\fP { \fBREAD_DATA_RECEIVED\fP, \fBREAD_NO_DATA_RECEIVED\fP, \fBREAD_ERROR\fP, \fBREAD_MEMORY_ERROR\fP }"
+.br
+.ti -1c
+.RI "enum \fBtransmit_result\fP { \fBTRANSMIT_COMPLETE\fP, \fBTRANSMIT_INCOMPLETE\fP, \fBTRANSMIT_SOFT_ERROR\fP, \fBTRANSMIT_HARD_ERROR\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBconn\fP * \fBconn_from_freelist\fP ()"
+.br
+.ti -1c
+.RI "bool \fBconn_add_to_freelist\fP (\fBconn\fP *c)"
+.br
+.ti -1c
+.RI "\fBconn\fP * \fBconn_new\fP (const int sfd, enum \fBconn_states\fP init_state, const int event_flags, const int read_buffer_size, enum \fBnetwork_transport\fP transport, struct event_base *base)"
+.br
+.ti -1c
+.RI "enum \fBstore_item_type\fP \fBdo_store_item\fP (\fBitem\fP *it, int comm, \fBconn\fP *c, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBappend_stat\fP (const char *name, \fBADD_STAT\fP add_stats, \fBconn\fP *c, const char *fmt,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "enum \fBdelta_result_type\fP \fBdo_add_delta\fP (\fBconn\fP *c, const char *key, const size_t nkey, const bool incr, const int64_t delta, char *buf, uint64_t *cas, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBdo_accept_new_conns\fP (const bool do_accept)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char **argv)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "struct \fBstats\fP \fBstats\fP"
+.br
+.ti -1c
+.RI "struct \fBsettings\fP \fBsettings\fP"
+.br
+.ti -1c
+.RI "time_t \fBprocess_started\fP"
+.br
+.ti -1c
+.RI "struct \fBslab_rebalance\fP \fBslab_rebal\fP"
+.br
+.ti -1c
+.RI "volatile int \fBslab_rebalance_signal\fP"
+.br
+.ti -1c
+.RI "volatile \fBrel_time_t\fP \fBcurrent_time\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define _P1003_1B_VISIBLE"
+
+.SS "#define __need_IOV_MAX"
+
+.SS "#define REALTIME_MAXDELTA   60*60*24*30"
+
+.SS "#define COMMAND_TOKEN   0"
+
+.SS "#define SUBCOMMAND_TOKEN   1"
+
+.SS "#define KEY_TOKEN   1"
+
+.SS "#define MAX_TOKENS   8"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBtoken_s\fP  \fBtoken_t\fP"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBtry_read_result\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIREAD_DATA_RECEIVED \fP\fP
+.TP
+\fB\fIREAD_NO_DATA_RECEIVED \fP\fP
+.TP
+\fB\fIREAD_ERROR \fP\fP
+.TP
+\fB\fIREAD_MEMORY_ERROR \fP\fP
+an error occured (on the socket) (or client closed connection) failed to allocate more memory 
+.SS "enum \fBtransmit_result\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITRANSMIT_COMPLETE \fP\fP
+.TP
+\fB\fITRANSMIT_INCOMPLETE \fP\fP
+All done writing\&. 
+.TP
+\fB\fITRANSMIT_SOFT_ERROR \fP\fP
+More data remaining to write\&. 
+.TP
+\fB\fITRANSMIT_HARD_ERROR \fP\fP
+Can't write any more right now\&. Can't write (c->state is set to conn_closing) 
+.SH "Function Documentation"
+.PP 
+.SS "\fBconn\fP* conn_from_freelist (void)"
+
+.PP
+Referenced by conn_new()\&.
+.SS "bool conn_add_to_freelist (\fBconn\fP *c)"
+
+.PP
+Referenced by conn_new()\&.
+.SS "\fBconn\fP* conn_new (const intsfd, enum \fBconn_states\fPinit_state, const intevent_flags, const intread_buffer_size, enum \fBnetwork_transport\fPtransport, struct event_base *base)"
+
+.PP
+References ascii_prot, binary_prot, settings::binding_protocol, conn::cmd, conn_add_to_freelist(), conn_from_freelist(), conn_listening, stats::conn_structs, stats::curr_conns, DATA_BUFFER_SIZE, conn::ev_flags, conn::event, conn::hdrbuf, conn::hdrsize, conn::icurr, conn::ileft, conn::ilist, conn::iov, IOV_LIST_INITIAL, conn::iovsize, conn::iovused, IS_UDP, conn::isize, conn::item, ITEM_LIST_INITIAL, MEMCACHED_CONN_ALLOCATE, MEMCACHED_CONN_CREATE, MSG_LIST_INITIAL, conn::msgcurr, conn::msglist, conn::msgsize, conn::msgused, negotiating_prot, conn::noreply, conn::protocol, conn::rbuf, conn::rbytes, conn::rcurr, conn::request_addr, conn::request_addr_size, conn::ritem, conn::rlbytes, conn::rsize, conn::sfd, settings::socketpath, conn::state, STATS_LOCK(), STATS_UNLOCK(), SUFFIX_LIST_INITIAL, conn::suffixcurr, conn::suffixleft, conn::suffixlist, conn::suffixsize, stats::total_conns, conn::transport, settings::verbose, conn::wbuf, conn::wbytes, conn::wcurr, conn::write_and_free, conn::write_and_go, and conn::wsize\&.
+.SS "enum \fBstore_item_type\fP do_store_item (\fBitem\fP *it, intcomm, \fBconn\fP *c, const uint32_thv)"
+
+.PP
+References conn::cas, slab_stats::cas_badval, slab_stats::cas_hits, thread_stats::cas_misses, do_item_alloc(), do_item_get(), do_item_link(), do_item_remove(), do_item_update(), EXISTS, _stritem::exptime, ITEM_data, ITEM_get_cas, ITEM_key, item_replace(), ITEM_suffix, thread_stats::mutex, _stritem::nbytes, _stritem::nkey, NOT_FOUND, NOT_STORED, NREAD_ADD, NREAD_APPEND, NREAD_CAS, NREAD_PREPEND, NREAD_REPLACE, thread_stats::slab_stats, _stritem::slabs_clsid, LIBEVENT_THREAD::stats, STORED, conn::thread, and settings::verbose\&.
+.PP
+Referenced by store_item()\&.
+.SS "void append_stat (const char *name, \fBADD_STAT\fPadd_stats, \fBconn\fP *c, const char *fmt, \&.\&.\&.)"
+
+.PP
+References STAT_VAL_LEN\&.
+.SS "enum \fBdelta_result_type\fP do_add_delta (\fBconn\fP *c, const char *key, const size_tnkey, const boolincr, const int64_tdelta, char *buf, uint64_t *cas, const uint32_thv)"
+
+.PP
+References cache_lock, slab_stats::decr_hits, DELTA_ITEM_CAS_MISMATCH, DELTA_ITEM_NOT_FOUND, do_item_alloc(), do_item_get(), do_item_remove(), do_item_update(), EOM, _stritem::exptime, get_cas_id(), slab_stats::incr_hits, INCR_MAX_STORAGE_LEN, ITEM_data, ITEM_get_cas, ITEM_key, item_replace(), ITEM_set_cas, ITEM_suffix, MEMCACHED_COMMAND_DECR, MEMCACHED_COMMAND_INCR, thread_stats::mutex, mutex_unlock, _stritem::nbytes, _stritem::nkey, NON_NUMERIC, OK, _stritem::refcount, safe_strtoull(), conn::sfd, thread_stats::slab_stats, _stritem::slabs_clsid, LIBEVENT_THREAD::stats, conn::thread, and settings::use_cas\&.
+.PP
+Referenced by add_delta()\&.
+.SS "void do_accept_new_conns (const booldo_accept)"
+
+.PP
+References stats::accepting_conns, settings::backlog, stats::listen_disabled_num, conn::next, conn::sfd, STATS_LOCK(), and STATS_UNLOCK()\&.
+.PP
+Referenced by accept_new_conns()\&.
+.SS "int main (intargc, char **argv)"
+
+.PP
+References settings::access, ascii_prot, assoc_init(), settings::backlog, binary_prot, settings::binding_protocol, settings::chunk_size, stats::curr_conns, daemonize(), settings::detail_enabled, drop_privileges(), settings::evict_to_free, settings::factor, settings::hashpower_init, init_sasl(), settings::inter, settings::item_size_max, settings::maxbytes, settings::maxconns, settings::maxconns_fast, negotiating_prot, settings::num_threads, settings::num_threads_per_udp, settings::port, settings::prefix_delimiter, settings::reqs_per_event, stats::reserved_fds, settings::sasl, settings::slab_automove, settings::slab_reassign, slabs_init(), settings::socketpath, start_assoc_maintenance_thread(), start_slab_maintenance_thread(), stop_assoc_maintenance_thread(), tcp_transport, thread_init(), udp_transport, settings::udpport, settings::use_cas, settings::verbose, and vperror()\&.
+.SH "Variable Documentation"
+.PP 
+.SS "struct \fBstats\fP \fBstats\fP"
+exported globals 
+.SS "struct \fBsettings\fP \fBsettings\fP"
+
+.SS "time_t process_started"
+
+.PP
+Referenced by do_item_cachedump()\&.
+.SS "struct \fBslab_rebalance\fP slab_rebal"
+
+.PP
+Referenced by do_item_get(), and start_slab_maintenance_thread()\&.
+.SS "volatile int slab_rebalance_signal"
+
+.PP
+Referenced by do_item_get(), and start_slab_maintenance_thread()\&.
+.SS "volatile \fBrel_time_t\fP current_time"
+
+.PP
+Referenced by do_item_alloc(), do_item_get(), do_item_link(), do_item_stats(), and do_item_update()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

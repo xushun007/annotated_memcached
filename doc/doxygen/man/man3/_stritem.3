@@ -1,0 +1,118 @@
+.TH "_stritem" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_stritem \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct \fB_stritem\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "struct \fB_stritem\fP * \fBprev\fP"
+.br
+.ti -1c
+.RI "struct \fB_stritem\fP * \fBh_next\fP"
+.br
+.ti -1c
+.RI "\fBrel_time_t\fP \fBtime\fP"
+.br
+.ti -1c
+.RI "\fBrel_time_t\fP \fBexptime\fP"
+.br
+.ti -1c
+.RI "int \fBnbytes\fP"
+.br
+.ti -1c
+.RI "unsigned short \fBrefcount\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBnsuffix\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBit_flags\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBslabs_clsid\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBnkey\fP"
+.br
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   uint64_t \fBcas\fP"
+.br
+.ti -1c
+.RI "   char \fBend\fP"
+.br
+.ti -1c
+.RI "} \fBdata\fP []"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure for storing items within memcached\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "struct \fB_stritem\fP* _stritem::next"
+
+.PP
+Referenced by do_item_alloc(), do_item_cachedump(), do_item_flush_expired(), and do_item_stats_sizes()\&.
+.SS "struct \fB_stritem\fP* _stritem::prev"
+
+.PP
+Referenced by do_item_alloc()\&.
+.SS "struct \fB_stritem\fP* _stritem::h_next"
+
+.PP
+Referenced by assoc_delete(), assoc_find(), assoc_insert(), and do_item_alloc()\&.
+.SS "\fBrel_time_t\fP _stritem::time"
+
+.PP
+Referenced by do_item_flush_expired(), do_item_get(), do_item_link(), and do_item_update()\&.
+.SS "\fBrel_time_t\fP _stritem::exptime"
+
+.PP
+Referenced by do_add_delta(), do_item_alloc(), do_item_cachedump(), do_item_get(), do_item_touch(), and do_store_item()\&.
+.SS "int _stritem::nbytes"
+
+.PP
+Referenced by do_add_delta(), do_item_alloc(), do_item_cachedump(), do_item_link(), do_item_remove(), do_item_replace(), do_item_unlink(), do_item_unlink_nolock(), do_item_update(), and do_store_item()\&.
+.SS "unsigned short _stritem::refcount"
+
+.PP
+Referenced by do_add_delta(), do_item_alloc(), do_item_get(), do_item_link(), do_item_remove(), and item_free()\&.
+.SS "uint8_t _stritem::nsuffix"
+
+.PP
+Referenced by do_item_alloc()\&.
+.SS "uint8_t _stritem::it_flags"
+
+.PP
+Referenced by do_item_alloc(), do_item_flush_expired(), do_item_get(), do_item_link(), do_item_remove(), do_item_replace(), do_item_unlink(), do_item_unlink_nolock(), do_item_update(), and item_free()\&.
+.SS "uint8_t _stritem::slabs_clsid"
+
+.PP
+Referenced by do_add_delta(), do_item_alloc(), do_store_item(), and item_free()\&.
+.SS "uint8_t _stritem::nkey"
+
+.PP
+Referenced by assoc_find(), assoc_insert(), do_add_delta(), do_item_alloc(), do_item_cachedump(), do_item_flush_expired(), do_item_link(), do_item_remove(), do_item_replace(), do_item_unlink(), do_item_unlink_nolock(), do_item_update(), do_store_item(), item_link(), item_remove(), item_unlink(), item_update(), and store_item()\&.
+.SS "uint64_t _stritem::cas"
+
+.SS "char _stritem::end"
+
+.SS "union { \&.\&.\&. }   _stritem::data[]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

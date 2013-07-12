@@ -1,0 +1,54 @@
+.TH "protocol_binary_request_flush" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+protocol_binary_request_flush \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <protocol_binary\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   \fBprotocol_binary_request_header\fP \fBheader\fP"
+.br
+.ti -1c
+.RI "   struct {"
+.br
+.ti -1c
+.RI "      uint32_t \fBexpiration\fP"
+.br
+.ti -1c
+.RI "   } \fBbody\fP"
+.br
+.ti -1c
+.RI "} \fBmessage\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBbytes\fP [sizeof(\fBprotocol_binary_request_header\fP)+4]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of the packet used by the flush command See section 4 Please note that the expiration field is optional, so remember to see check the header\&.bodysize to see if it is present\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBprotocol_binary_request_header\fP protocol_binary_request_flush::header"
+
+.SS "uint32_t protocol_binary_request_flush::expiration"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_flush::body"
+
+.SS "struct { \&.\&.\&. }   protocol_binary_request_flush::message"
+
+.SS "uint8_t protocol_binary_request_flush::bytes[sizeof(\fBprotocol_binary_request_header\fP)+4]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

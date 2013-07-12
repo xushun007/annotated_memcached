@@ -1,0 +1,89 @@
+.TH "assoc.h" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+assoc.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBassoc_init\fP (const int hashpower_init)"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBassoc_find\fP (const char *key, const size_t nkey, const uint32_t hv)"
+.br
+.ti -1c
+.RI "int \fBassoc_insert\fP (\fBitem\fP *\fBitem\fP, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBassoc_delete\fP (const char *key, const size_t nkey, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBdo_assoc_move_next_bucket\fP (void)"
+.br
+.ti -1c
+.RI "int \fBstart_assoc_maintenance_thread\fP (void)"
+.br
+.ti -1c
+.RI "void \fBstop_assoc_maintenance_thread\fP (void)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBhashpower\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void assoc_init (const inthashpower_init)"
+
+.PP
+References stats::hash_bytes, stats::hash_power_level, hashpower, hashsize, STATS_LOCK(), and STATS_UNLOCK()\&.
+.PP
+Referenced by main()\&.
+.SS "\fBitem\fP* assoc_find (const char *key, const size_tnkey, const uint32_thv)"
+
+.PP
+References _stritem::h_next, hashmask, hashpower, ITEM_key, MEMCACHED_ASSOC_FIND, and _stritem::nkey\&.
+.PP
+Referenced by do_item_get()\&.
+.SS "int assoc_insert (\fBitem\fP *item, const uint32_thv)"
+
+.PP
+References _stritem::h_next, hashmask, hashpower, hashsize, ITEM_key, MEMCACHED_ASSOC_INSERT, and _stritem::nkey\&.
+.PP
+Referenced by do_item_link()\&.
+.SS "void assoc_delete (const char *key, const size_tnkey, const uint32_thv)"
+
+.PP
+References _stritem::h_next, and MEMCACHED_ASSOC_DELETE\&.
+.PP
+Referenced by do_item_unlink(), and do_item_unlink_nolock()\&.
+.SS "void do_assoc_move_next_bucket (void)"
+
+.SS "int start_assoc_maintenance_thread (void)"
+
+.PP
+References DEFAULT_HASH_BULK_MOVE\&.
+.PP
+Referenced by main()\&.
+.SS "void stop_assoc_maintenance_thread (void)"
+
+.PP
+References cache_lock, and mutex_unlock\&.
+.PP
+Referenced by main()\&.
+.SH "Variable Documentation"
+.PP 
+.SS "unsigned int hashpower"
+
+.PP
+Referenced by assoc_find(), assoc_init(), assoc_insert(), item_lock(), item_trylock(), and item_unlock()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

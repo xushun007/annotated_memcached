@@ -1,0 +1,94 @@
+.TH "util.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+util.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <ctype\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdarg\&.h>\fP
+.br
+\fC#include 'memcached\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBxisspace\fP(c)   isspace((unsigned char)c)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBsafe_strtoull\fP (const char *str, uint64_t *out)"
+.br
+.ti -1c
+.RI "bool \fBsafe_strtoll\fP (const char *str, int64_t *out)"
+.br
+.ti -1c
+.RI "bool \fBsafe_strtoul\fP (const char *str, uint32_t *out)"
+.br
+.ti -1c
+.RI "bool \fBsafe_strtol\fP (const char *str, int32_t *out)"
+.br
+.ti -1c
+.RI "void \fBvperror\fP (const char *fmt,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "uint64_t \fBntohll\fP (uint64_t val)"
+.br
+.ti -1c
+.RI "uint64_t \fBhtonll\fP (uint64_t val)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define xisspace(c)   isspace((unsigned char)c)"
+
+.PP
+Referenced by safe_strtol(), safe_strtoll(), safe_strtoul(), and safe_strtoull()\&.
+.SH "Function Documentation"
+.PP 
+.SS "bool safe_strtoull (const char *str, uint64_t *out)"
+
+.PP
+References xisspace\&.
+.PP
+Referenced by do_add_delta()\&.
+.SS "bool safe_strtoll (const char *str, int64_t *out)"
+
+.PP
+References xisspace\&.
+.SS "bool safe_strtoul (const char *str, uint32_t *out)"
+
+.PP
+References xisspace\&.
+.SS "bool safe_strtol (const char *str, int32_t *out)"
+
+.PP
+References xisspace\&.
+.SS "void vperror (const char *fmt, \&.\&.\&.)"
+
+.PP
+Referenced by main()\&.
+.SS "uint64_t ntohll (uint64_tval)"
+
+.SS "uint64_t htonll (uint64_tval)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

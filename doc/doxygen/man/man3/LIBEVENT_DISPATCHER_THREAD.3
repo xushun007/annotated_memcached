@@ -1,0 +1,34 @@
+.TH "LIBEVENT_DISPATCHER_THREAD" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LIBEVENT_DISPATCHER_THREAD \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "pthread_t \fBthread_id\fP"
+.br
+.ti -1c
+.RI "struct event_base * \fBbase\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "pthread_t LIBEVENT_DISPATCHER_THREAD::thread_id"
+
+.PP
+Referenced by is_listen_thread(), and thread_init()\&.
+.SS "struct event_base* LIBEVENT_DISPATCHER_THREAD::base"
+
+.PP
+Referenced by thread_init()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

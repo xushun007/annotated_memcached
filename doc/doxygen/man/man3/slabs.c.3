@@ -1,0 +1,187 @@
+.TH "slabs.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slabs.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'memcached\&.h'\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <sys/signal\&.h>\fP
+.br
+\fC#include <sys/resource\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBslabclass_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBDEFAULT_SLAB_BULK_CHECK\fP   1"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBmove_status\fP { \fBMOVE_PASS\fP =0, \fBMOVE_DONE\fP, \fBMOVE_BUSY\fP, \fBMOVE_LOCKED\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBslabs_clsid\fP (const size_t size)"
+.br
+.ti -1c
+.RI "void \fBslabs_init\fP (const size_t limit, const double factor, const bool prealloc)"
+.br
+.ti -1c
+.RI "bool \fBget_stats\fP (const char *stat_type, int nkey, \fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "void * \fBslabs_alloc\fP (size_t size, unsigned int id)"
+.br
+.ti -1c
+.RI "void \fBslabs_free\fP (void *ptr, size_t size, unsigned int id)"
+.br
+.ti -1c
+.RI "void \fBslabs_stats\fP (\fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "void \fBslabs_adjust_mem_requested\fP (unsigned int id, size_t old, size_t ntotal)"
+.br
+.ti -1c
+.RI "enum \fBreassign_result_type\fP \fBslabs_reassign\fP (int src, int dst)"
+.br
+.ti -1c
+.RI "void \fBslabs_rebalancer_pause\fP (void)"
+.br
+.ti -1c
+.RI "void \fBslabs_rebalancer_resume\fP (void)"
+.br
+.ti -1c
+.RI "int \fBstart_slab_maintenance_thread\fP (void)"
+.br
+.ti -1c
+.RI "void \fBstop_slab_maintenance_thread\fP (void)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBslab_bulk_check\fP = \fBDEFAULT_SLAB_BULK_CHECK\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define DEFAULT_SLAB_BULK_CHECK   1"
+
+.PP
+Referenced by start_slab_maintenance_thread()\&.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBmove_status\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIMOVE_PASS \fP\fP
+.TP
+\fB\fIMOVE_DONE \fP\fP
+.TP
+\fB\fIMOVE_BUSY \fP\fP
+.TP
+\fB\fIMOVE_LOCKED \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "unsigned int slabs_clsid (const size_tsize)"
+Given object size, return id to use when allocating/freeing memory for object 0 means error: can't store such a large object 
+.PP
+References POWER_SMALLEST\&.
+.PP
+Referenced by do_item_alloc(), do_item_cachedump(), and item_size_ok()\&.
+.SS "void slabs_init (const size_tlimit, const doublefactor, const boolprealloc)"
+Determines the chunk sizes and initializes the slab class descriptors accordingly\&. 
+.PP
+References CHUNK_ALIGN_BYTES, settings::chunk_size, settings::item_size_max, slabclass_t::perslab, POWER_LARGEST, POWER_SMALLEST, slabclass_t::size, and settings::verbose\&.
+.PP
+Referenced by main()\&.
+.SS "bool get_stats (const char *stat_type, intnkey, \fBADD_STAT\fPadd_stats, void *c)"
+Return a datum for stats in binary protocol 
+.PP
+References APPEND_STAT, stats::curr_bytes, stats::curr_items, item_stats(), item_stats_sizes(), item_stats_totals(), slabs_stats(), STATS_LOCK(), STATS_UNLOCK(), and stats::total_items\&.
+.SS "void* slabs_alloc (const size_tsize, unsigned intid)"
+Allocate object of given length\&. 0 on error 
+.PP
+Referenced by do_item_alloc()\&.
+.SS "void slabs_free (void *ptr, size_tsize, unsigned intid)"
+Free previously allocated object 
+.PP
+Referenced by item_free()\&.
+.SS "void slabs_stats (\fBADD_STAT\fPadd_stats, void *c)"
+Fill buffer with stats 
+.PP
+Referenced by get_stats()\&.
+.SS "void slabs_adjust_mem_requested (unsigned intid, size_told, size_tntotal)"
+Adjust the stats for memory requested 
+.PP
+References slabclass_t::requested\&.
+.PP
+Referenced by do_item_alloc()\&.
+.SS "enum \fBreassign_result_type\fP slabs_reassign (intsrc, intdst)"
+
+.PP
+References REASSIGN_RUNNING\&.
+.PP
+Referenced by do_item_alloc()\&.
+.SS "void slabs_rebalancer_pause (void)"
+
+.SS "void slabs_rebalancer_resume (void)"
+
+.SS "int start_slab_maintenance_thread (void)"
+
+.PP
+References DEFAULT_SLAB_BULK_CHECK, slab_rebal, slab_rebalance_signal, and slab_rebalance::slab_start\&.
+.PP
+Referenced by main()\&.
+.SS "void stop_slab_maintenance_thread (void)"
+
+.PP
+References cache_lock\&.
+.SH "Variable Documentation"
+.PP 
+.SS "int slab_bulk_check = \fBDEFAULT_SLAB_BULK_CHECK\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

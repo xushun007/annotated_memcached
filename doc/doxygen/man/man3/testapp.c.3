@@ -1,0 +1,140 @@
+.TH "testapp.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+testapp.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <sys/types\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <sys/wait\&.h>\fP
+.br
+\fC#include <netdb\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <netinet/tcp\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include 'config\&.h'\fP
+.br
+\fC#include 'cache\&.h'\fP
+.br
+\fC#include 'util\&.h'\fP
+.br
+\fC#include 'protocol_binary\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtestcase\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTMP_TEMPLATE\fP   '/tmp/test_file\&.XXXXXXX'"
+.br
+.ti -1c
+.RI "#define \fBITERATIONS\fP   1024"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef enum \fBtest_return\fP(* \fBTEST_FUNC\fP )(void)"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBtest_return\fP { \fBTEST_SKIP\fP, \fBTEST_PASS\fP, \fBTEST_FAIL\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmain\fP (int argc, char **argv)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const uint64_t \fBconstructor_pattern\fP = 0xdeadcafebabebeef"
+.br
+.ti -1c
+.RI "volatile bool \fBhickup_thread_running\fP"
+.br
+.ti -1c
+.RI "struct \fBtestcase\fP \fBtestcases\fP []"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define TMP_TEMPLATE   '/tmp/test_file\&.XXXXXXX'"
+
+.SS "#define ITERATIONS   1024"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef enum \fBtest_return\fP(* TEST_FUNC)(void)"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBtest_return\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITEST_SKIP \fP\fP
+.TP
+\fB\fITEST_PASS \fP\fP
+.TP
+\fB\fITEST_FAIL \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "int main (intargc, char **argv)"
+
+.PP
+References testcase::description, testcase::function, TEST_PASS, and TEST_SKIP\&.
+.SH "Variable Documentation"
+.PP 
+.SS "const uint64_t constructor_pattern = 0xdeadcafebabebeef"
+
+.SS "volatile bool hickup_thread_running"
+
+.SS "struct \fBtestcase\fP testcases[]"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

@@ -1,0 +1,241 @@
+.TH "items.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+items.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'memcached\&.h'\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <sys/signal\&.h>\fP
+.br
+\fC#include <sys/resource\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBitemstats_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBITEM_UPDATE_INTERVAL\fP   60"
+.br
+.ti -1c
+.RI "#define \fBLARGEST_ID\fP   \fBPOWER_LARGEST\fP"
+.br
+.ti -1c
+.RI "#define \fBDEBUG_REFCNT\fP(it, op)   while(0)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBitem_stats_reset\fP (void)"
+.br
+.ti -1c
+.RI "uint64_t \fBget_cas_id\fP (void)"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBdo_item_alloc\fP (char *key, const size_t nkey, const int flags, const \fBrel_time_t\fP exptime, const int nbytes, const uint32_t cur_hv)"
+.br
+.ti -1c
+.RI "void \fBitem_free\fP (\fBitem\fP *it)"
+.br
+.ti -1c
+.RI "bool \fBitem_size_ok\fP (const size_t nkey, const int flags, const int nbytes)"
+.br
+.ti -1c
+.RI "int \fBdo_item_link\fP (\fBitem\fP *it, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBdo_item_unlink\fP (\fBitem\fP *it, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBdo_item_unlink_nolock\fP (\fBitem\fP *it, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBdo_item_remove\fP (\fBitem\fP *it)"
+.br
+.ti -1c
+.RI "void \fBdo_item_update\fP (\fBitem\fP *it)"
+.br
+.ti -1c
+.RI "int \fBdo_item_replace\fP (\fBitem\fP *it, \fBitem\fP *new_it, const uint32_t hv)"
+.br
+.ti -1c
+.RI "char * \fBdo_item_cachedump\fP (const unsigned int \fBslabs_clsid\fP, const unsigned int limit, unsigned int *bytes)"
+.br
+.ti -1c
+.RI "void \fBitem_stats_evictions\fP (uint64_t *evicted)"
+.br
+.ti -1c
+.RI "void \fBdo_item_stats_totals\fP (\fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "void \fBdo_item_stats\fP (\fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "void \fBdo_item_stats_sizes\fP (\fBADD_STAT\fP add_stats, void *c)"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBdo_item_get\fP (const char *key, const size_t nkey, const uint32_t hv)"
+.br
+.ti -1c
+.RI "\fBitem\fP * \fBdo_item_touch\fP (const char *key, size_t nkey, uint32_t exptime, const uint32_t hv)"
+.br
+.ti -1c
+.RI "void \fBdo_item_flush_expired\fP (void)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define ITEM_UPDATE_INTERVAL   60"
+
+.PP
+Referenced by do_item_update()\&.
+.SS "#define LARGEST_ID   \fBPOWER_LARGEST\fP"
+
+.PP
+Referenced by do_item_flush_expired(), do_item_stats(), do_item_stats_sizes(), do_item_stats_totals(), and item_stats_evictions()\&.
+.SS "#define DEBUG_REFCNT(it, op)   while(0)"
+
+.PP
+Referenced by do_item_alloc(), do_item_get(), and item_free()\&.
+.SH "Function Documentation"
+.PP 
+.SS "void item_stats_reset (void)"
+
+.PP
+References cache_lock, and mutex_unlock\&.
+.SS "uint64_t get_cas_id (void)"
+
+.PP
+Referenced by do_add_delta(), and do_item_link()\&.
+.SS "\fBitem\fP* do_item_alloc (char *key, const size_tnkey, const intflags, const \fBrel_time_t\fPexptime, const intnbytes, const uint32_tcur_hv)"
+
+.PP
+References cache_lock, current_time, DEBUG_REFCNT, do_item_unlink_nolock(), settings::evict_to_free, itemstats_t::evicted, itemstats_t::evicted_nonzero, itemstats_t::evicted_time, itemstats_t::evicted_unfetched, itemstats_t::expired_unfetched, _stritem::exptime, _stritem::h_next, hash(), _stritem::it_flags, ITEM_CAS, ITEM_FETCHED, ITEM_key, ITEM_ntotal, ITEM_suffix, item_trylock(), item_trylock_unlock(), mutex_unlock, _stritem::nbytes, _stritem::next, _stritem::nkey, _stritem::nsuffix, settings::oldest_live, itemstats_t::outofmemory, _stritem::prev, itemstats_t::reclaimed, _stritem::refcount, refcount_decr(), refcount_incr(), settings::slab_automove, slabs_adjust_mem_requested(), slabs_alloc(), slabs_clsid(), _stritem::slabs_clsid, slabs_reassign(), TAIL_REPAIR_TIME, itemstats_t::tailrepairs, and settings::use_cas\&.
+.PP
+Referenced by do_add_delta(), do_store_item(), and item_alloc()\&.
+.SS "void item_free (\fBitem\fP *it)"
+
+.PP
+References DEBUG_REFCNT, _stritem::it_flags, ITEM_LINKED, ITEM_ntotal, _stritem::refcount, _stritem::slabs_clsid, and slabs_free()\&.
+.PP
+Referenced by do_item_remove()\&.
+.SS "bool item_size_ok (const size_tnkey, const intflags, const intnbytes)"
+Returns true if an item will fit in the cache (its size does not exceed the maximum for a cache entry\&.) 
+.PP
+References slabs_clsid(), and settings::use_cas\&.
+.SS "int do_item_link (\fBitem\fP *it, const uint32_thv)"
+
+.PP
+References assoc_insert(), cache_lock, stats::curr_bytes, stats::curr_items, current_time, get_cas_id(), _stritem::it_flags, ITEM_key, ITEM_LINKED, ITEM_ntotal, ITEM_set_cas, ITEM_SLABBED, MEMCACHED_ITEM_LINK, mutex_unlock, _stritem::nbytes, _stritem::nkey, _stritem::refcount, refcount_incr(), STATS_LOCK(), STATS_UNLOCK(), _stritem::time, stats::total_items, and settings::use_cas\&.
+.PP
+Referenced by do_item_replace(), do_store_item(), and item_link()\&.
+.SS "void do_item_unlink (\fBitem\fP *it, const uint32_thv)"
+may fail if transgresses limits 
+.PP
+References assoc_delete(), cache_lock, stats::curr_bytes, stats::curr_items, do_item_remove(), _stritem::it_flags, ITEM_key, ITEM_LINKED, ITEM_ntotal, MEMCACHED_ITEM_UNLINK, mutex_unlock, _stritem::nbytes, _stritem::nkey, STATS_LOCK(), and STATS_UNLOCK()\&.
+.PP
+Referenced by do_item_get(), do_item_replace(), and item_unlink()\&.
+.SS "void do_item_unlink_nolock (\fBitem\fP *it, const uint32_thv)"
+
+.PP
+References assoc_delete(), stats::curr_bytes, stats::curr_items, do_item_remove(), _stritem::it_flags, ITEM_key, ITEM_LINKED, ITEM_ntotal, MEMCACHED_ITEM_UNLINK, _stritem::nbytes, _stritem::nkey, STATS_LOCK(), and STATS_UNLOCK()\&.
+.PP
+Referenced by do_item_alloc(), do_item_flush_expired(), and do_item_get()\&.
+.SS "void do_item_remove (\fBitem\fP *it)"
+
+.PP
+References _stritem::it_flags, item_free(), ITEM_key, ITEM_SLABBED, MEMCACHED_ITEM_REMOVE, _stritem::nbytes, _stritem::nkey, _stritem::refcount, and refcount_decr()\&.
+.PP
+Referenced by do_add_delta(), do_item_get(), do_item_unlink(), do_item_unlink_nolock(), do_store_item(), and item_remove()\&.
+.SS "void do_item_update (\fBitem\fP *it)"
+
+.PP
+References cache_lock, current_time, _stritem::it_flags, ITEM_key, ITEM_LINKED, ITEM_SLABBED, ITEM_UPDATE_INTERVAL, MEMCACHED_ITEM_UPDATE, mutex_unlock, _stritem::nbytes, _stritem::nkey, and _stritem::time\&.
+.PP
+Referenced by do_add_delta(), do_store_item(), and item_update()\&.
+.SS "int do_item_replace (\fBitem\fP *it, \fBitem\fP *new_it, const uint32_thv)"
+update LRU time to current and reposition 
+.PP
+References do_item_link(), do_item_unlink(), _stritem::it_flags, ITEM_key, ITEM_SLABBED, MEMCACHED_ITEM_REPLACE, _stritem::nbytes, and _stritem::nkey\&.
+.PP
+Referenced by item_replace()\&.
+.SS "char* do_item_cachedump (const unsigned intslabs_clsid, const unsigned intlimit, unsigned int *bytes)"
+
+.PP
+References _stritem::exptime, ITEM_key, KEY_MAX_LENGTH, _stritem::nbytes, _stritem::next, _stritem::nkey, process_started, and slabs_clsid()\&.
+.PP
+Referenced by item_cachedump()\&.
+.SS "void item_stats_evictions (uint64_t *evicted)"
+
+.PP
+References cache_lock, itemstats_t::evicted, LARGEST_ID, and mutex_unlock\&.
+.SS "void do_item_stats_totals (\fBADD_STAT\fPadd_stats, void *c)"
+
+.PP
+References APPEND_STAT, itemstats_t::evicted, itemstats_t::evicted_unfetched, itemstats_t::expired_unfetched, LARGEST_ID, and itemstats_t::reclaimed\&.
+.PP
+Referenced by item_stats_totals()\&.
+.SS "void do_item_stats (\fBADD_STAT\fPadd_stats, void *c)"
+
+.PP
+References APPEND_NUM_FMT_STAT, current_time, LARGEST_ID, STAT_KEY_LEN, and STAT_VAL_LEN\&.
+.PP
+Referenced by item_stats()\&.
+.SS "void do_item_stats_sizes (\fBADD_STAT\fPadd_stats, void *c)"
+dumps out a list of objects of each size, with granularity of 32 bytes 
+.PP
+References APPEND_STAT, ITEM_ntotal, LARGEST_ID, and _stritem::next\&.
+.PP
+Referenced by item_stats_sizes()\&.
+.SS "\fBitem\fP* do_item_get (const char *key, const size_tnkey, const uint32_thv)"
+wrapper around assoc_find which does the lazy expiration logic 
+.PP
+References assoc_find(), current_time, DEBUG_REFCNT, do_item_remove(), do_item_unlink(), do_item_unlink_nolock(), _stritem::exptime, _stritem::it_flags, ITEM_FETCHED, ITEM_key, settings::oldest_live, _stritem::refcount, refcount_incr(), slab_rebalance::slab_end, slab_rebal, slab_rebalance_signal, slab_rebalance::slab_start, _stritem::time, and settings::verbose\&.
+.PP
+Referenced by do_add_delta(), do_item_touch(), do_store_item(), and item_get()\&.
+.SS "\fBitem\fP* do_item_touch (const char *key, size_tnkey, uint32_texptime, const uint32_thv)"
+
+.PP
+References do_item_get(), and _stritem::exptime\&.
+.PP
+Referenced by item_touch()\&.
+.SS "void do_item_flush_expired (void)"
+
+.PP
+References do_item_unlink_nolock(), hash(), _stritem::it_flags, ITEM_key, ITEM_SLABBED, LARGEST_ID, _stritem::next, _stritem::nkey, settings::oldest_live, and _stritem::time\&.
+.PP
+Referenced by item_flush_expired()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

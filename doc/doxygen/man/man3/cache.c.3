@@ -1,0 +1,137 @@
+.TH "cache.c" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+cache.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <inttypes\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include 'cache\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcache_t\fP * \fBcache_create\fP (const char *name, size_t bufsize, size_t align, \fBcache_constructor_t\fP *constructor, \fBcache_destructor_t\fP *destructor)"
+.br
+.ti -1c
+.RI "void \fBcache_destroy\fP (\fBcache_t\fP *cache)"
+.br
+.ti -1c
+.RI "void * \fBcache_alloc\fP (\fBcache_t\fP *cache)"
+.br
+.ti -1c
+.RI "void \fBcache_free\fP (\fBcache_t\fP *cache, void *ptr)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const uint64_t \fBredzone_pattern\fP = 0xdeadbeefcafebabe"
+.br
+.ti -1c
+.RI "int \fBcache_error\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBinitial_pool_size\fP = 64"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBcache_t\fP* cache_create (const char *name, size_tbufsize, size_talign, \fBcache_constructor_t\fP *constructor, \fBcache_destructor_t\fP *destructor)"
+Create an object cache\&.
+.PP
+The object cache will let you allocate objects of the same size\&. It is fully MT safe, so you may allocate objects from multiple threads without having to do any syncrhonization in the application code\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIname\fP the name of the object cache\&. This name may be used for debug purposes and may help you track down what kind of object you have problems with (buffer overruns, leakage etc) 
+.br
+\fIbufsize\fP the size of each object in the cache 
+.br
+\fIalign\fP the alignment requirements of the objects in the cache\&. 
+.br
+\fIconstructor\fP the function to be called to initialize memory when we need to allocate more memory from the os\&. 
+.br
+\fIdestructor\fP the function to be called before we release the memory back to the os\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a handle to an object cache if successful, NULL otherwise\&. 
+.RE
+.PP
+
+.PP
+References cache_t::bufsize, cache_t::constructor, cache_t::destructor, cache_t::freetotal, initial_pool_size, cache_t::mutex, cache_t::name, cache_t::ptr, and redzone_pattern\&.
+.SS "void cache_destroy (\fBcache_t\fP *handle)"
+Destroy an object cache\&.
+.PP
+Destroy and invalidate an object cache\&. You should return all buffers allocated with cache_alloc by using cache_free before calling this function\&. Not doing so results in undefined behavior (the buffers may or may not be invalidated)
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP the handle to the object cache to destroy\&. 
+.RE
+.PP
+
+.PP
+References cache_t::destructor, cache_t::freecurr, cache_t::mutex, cache_t::name, and cache_t::ptr\&.
+.SS "void* cache_alloc (\fBcache_t\fP *handle)"
+Allocate an object from the cache\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP the handle to the object cache to allocate from 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to an initialized object from the cache, or NULL if the allocation cannot be satisfied\&. 
+.RE
+.PP
+
+.PP
+References cache_t::bufsize, cache_t::constructor, cache_t::freecurr, cache_t::mutex, cache_t::ptr, and redzone_pattern\&.
+.SS "void cache_free (\fBcache_t\fP *handle, void *ptr)"
+Return an object back to the cache\&.
+.PP
+The caller should return the object in an initialized state so that the object may be returned in an expected state from cache_alloc\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP handle to the object cache to return the object to 
+.br
+\fIptr\fP pointer to the object to return\&. 
+.RE
+.PP
+
+.PP
+References cache_t::bufsize, cache_error, cache_t::destructor, cache_t::freecurr, cache_t::freetotal, cache_t::mutex, cache_t::ptr, and redzone_pattern\&.
+.SH "Variable Documentation"
+.PP 
+.SS "const uint64_t redzone_pattern = 0xdeadbeefcafebabe"
+
+.PP
+Referenced by cache_alloc(), cache_create(), and cache_free()\&.
+.SS "int cache_error = 0"
+
+.PP
+Referenced by cache_free()\&.
+.SS "const int initial_pool_size = 64"
+
+.PP
+Referenced by cache_create()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

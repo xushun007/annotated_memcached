@@ -1,0 +1,65 @@
+.TH "_prefix_stats" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_prefix_stats \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "char * \fBprefix\fP"
+.br
+.ti -1c
+.RI "size_t \fBprefix_len\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBnum_gets\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBnum_sets\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBnum_deletes\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBnum_hits\fP"
+.br
+.ti -1c
+.RI "\fBPREFIX_STATS\fP * \fBnext\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "char* _prefix_stats::prefix"
+
+.PP
+Referenced by stats_prefix_clear(), and stats_prefix_dump()\&.
+.SS "size_t _prefix_stats::prefix_len"
+
+.SS "uint64_t _prefix_stats::num_gets"
+
+.PP
+Referenced by stats_prefix_dump(), and stats_prefix_record_get()\&.
+.SS "uint64_t _prefix_stats::num_sets"
+
+.PP
+Referenced by stats_prefix_dump(), and stats_prefix_record_set()\&.
+.SS "uint64_t _prefix_stats::num_deletes"
+
+.PP
+Referenced by stats_prefix_dump(), and stats_prefix_record_delete()\&.
+.SS "uint64_t _prefix_stats::num_hits"
+
+.PP
+Referenced by stats_prefix_dump(), and stats_prefix_record_get()\&.
+.SS "\fBPREFIX_STATS\fP* _prefix_stats::next"
+
+.PP
+Referenced by stats_prefix_clear(), and stats_prefix_dump()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

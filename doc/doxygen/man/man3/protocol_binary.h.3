@@ -1,0 +1,559 @@
+.TH "protocol_binary.h" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+protocol_binary.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "union \fBprotocol_binary_request_header\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_response_header\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_request_no_extras\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_response_no_extras\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_response_get\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_request_flush\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_request_set\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_request_incr\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_response_incr\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_request_touch\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_request_gat\fP"
+.br
+.ti -1c
+.RI "union \fBprotocol_binary_request_rangeop\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_get\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_getq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_getk\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_getkq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_get\fP \fBprotocol_binary_response_getq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_get\fP \fBprotocol_binary_response_getk\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_get\fP \fBprotocol_binary_response_getkq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_delete\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_delete\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_flush\fP"
+.br
+.ti -1c
+.RI "typedef \fBprotocol_binary_request_set\fP \fBprotocol_binary_request_add\fP"
+.br
+.ti -1c
+.RI "typedef \fBprotocol_binary_request_set\fP \fBprotocol_binary_request_replace\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_set\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_add\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_replace\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_noop\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_noop\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_incr\fP \fBprotocol_binary_request_decr\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_incr\fP \fBprotocol_binary_response_decr\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_quit\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_quit\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_append\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_prepend\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_append\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_prepend\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_version\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_version\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_stats\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_stats\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_touch\fP"
+.br
+.ti -1c
+.RI "typedef \fBprotocol_binary_request_gat\fP \fBprotocol_binary_request_gatq\fP"
+.br
+.ti -1c
+.RI "typedef \fBprotocol_binary_request_gat\fP \fBprotocol_binary_request_gatk\fP"
+.br
+.ti -1c
+.RI "typedef \fBprotocol_binary_request_gat\fP \fBprotocol_binary_request_gatkq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gat\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gatq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gatk\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gatkq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rget\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rset\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rsetq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rappend\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rappendq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rprepend\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rprependq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdelete\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdeleteq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rincr\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rincrq\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdecr\fP"
+.br
+.ti -1c
+.RI "typedef 
+.br
+\fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdecrq\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBprotocol_binary_magic\fP { \fBPROTOCOL_BINARY_REQ\fP = 0x80, \fBPROTOCOL_BINARY_RES\fP = 0x81 }"
+.br
+.ti -1c
+.RI "enum \fBprotocol_binary_response_status\fP { \fBPROTOCOL_BINARY_RESPONSE_SUCCESS\fP = 0x00, \fBPROTOCOL_BINARY_RESPONSE_KEY_ENOENT\fP = 0x01, \fBPROTOCOL_BINARY_RESPONSE_KEY_EEXISTS\fP = 0x02, \fBPROTOCOL_BINARY_RESPONSE_E2BIG\fP = 0x03, \fBPROTOCOL_BINARY_RESPONSE_EINVAL\fP = 0x04, \fBPROTOCOL_BINARY_RESPONSE_NOT_STORED\fP = 0x05, \fBPROTOCOL_BINARY_RESPONSE_DELTA_BADVAL\fP = 0x06, \fBPROTOCOL_BINARY_RESPONSE_AUTH_ERROR\fP = 0x20, \fBPROTOCOL_BINARY_RESPONSE_AUTH_CONTINUE\fP = 0x21, \fBPROTOCOL_BINARY_RESPONSE_UNKNOWN_COMMAND\fP = 0x81, \fBPROTOCOL_BINARY_RESPONSE_ENOMEM\fP = 0x82 }"
+.br
+.ti -1c
+.RI "enum \fBprotocol_binary_command\fP { \fBPROTOCOL_BINARY_CMD_GET\fP = 0x00, \fBPROTOCOL_BINARY_CMD_SET\fP = 0x01, \fBPROTOCOL_BINARY_CMD_ADD\fP = 0x02, \fBPROTOCOL_BINARY_CMD_REPLACE\fP = 0x03, \fBPROTOCOL_BINARY_CMD_DELETE\fP = 0x04, \fBPROTOCOL_BINARY_CMD_INCREMENT\fP = 0x05, \fBPROTOCOL_BINARY_CMD_DECREMENT\fP = 0x06, \fBPROTOCOL_BINARY_CMD_QUIT\fP = 0x07, \fBPROTOCOL_BINARY_CMD_FLUSH\fP = 0x08, \fBPROTOCOL_BINARY_CMD_GETQ\fP = 0x09, \fBPROTOCOL_BINARY_CMD_NOOP\fP = 0x0a, \fBPROTOCOL_BINARY_CMD_VERSION\fP = 0x0b, \fBPROTOCOL_BINARY_CMD_GETK\fP = 0x0c, \fBPROTOCOL_BINARY_CMD_GETKQ\fP = 0x0d, \fBPROTOCOL_BINARY_CMD_APPEND\fP = 0x0e, \fBPROTOCOL_BINARY_CMD_PREPEND\fP = 0x0f, \fBPROTOCOL_BINARY_CMD_STAT\fP = 0x10, \fBPROTOCOL_BINARY_CMD_SETQ\fP = 0x11, \fBPROTOCOL_BINARY_CMD_ADDQ\fP = 0x12, \fBPROTOCOL_BINARY_CMD_REPLACEQ\fP = 0x13, \fBPROTOCOL_BINARY_CMD_DELETEQ\fP = 0x14, \fBPROTOCOL_BINARY_CMD_INCREMENTQ\fP = 0x15, \fBPROTOCOL_BINARY_CMD_DECREMENTQ\fP = 0x16, \fBPROTOCOL_BINARY_CMD_QUITQ\fP = 0x17, \fBPROTOCOL_BINARY_CMD_FLUSHQ\fP = 0x18, \fBPROTOCOL_BINARY_CMD_APPENDQ\fP = 0x19, \fBPROTOCOL_BINARY_CMD_PREPENDQ\fP = 0x1a, \fBPROTOCOL_BINARY_CMD_TOUCH\fP = 0x1c, \fBPROTOCOL_BINARY_CMD_GAT\fP = 0x1d, \fBPROTOCOL_BINARY_CMD_GATQ\fP = 0x1e, \fBPROTOCOL_BINARY_CMD_GATK\fP = 0x23, \fBPROTOCOL_BINARY_CMD_GATKQ\fP = 0x24, \fBPROTOCOL_BINARY_CMD_SASL_LIST_MECHS\fP = 0x20, \fBPROTOCOL_BINARY_CMD_SASL_AUTH\fP = 0x21, \fBPROTOCOL_BINARY_CMD_SASL_STEP\fP = 0x22, \fBPROTOCOL_BINARY_CMD_RGET\fP = 0x30, \fBPROTOCOL_BINARY_CMD_RSET\fP = 0x31, \fBPROTOCOL_BINARY_CMD_RSETQ\fP = 0x32, \fBPROTOCOL_BINARY_CMD_RAPPEND\fP = 0x33, \fBPROTOCOL_BINARY_CMD_RAPPENDQ\fP = 0x34, \fBPROTOCOL_BINARY_CMD_RPREPEND\fP = 0x35, \fBPROTOCOL_BINARY_CMD_RPREPENDQ\fP = 0x36, \fBPROTOCOL_BINARY_CMD_RDELETE\fP = 0x37, \fBPROTOCOL_BINARY_CMD_RDELETEQ\fP = 0x38, \fBPROTOCOL_BINARY_CMD_RINCR\fP = 0x39, \fBPROTOCOL_BINARY_CMD_RINCRQ\fP = 0x3a, \fBPROTOCOL_BINARY_CMD_RDECR\fP = 0x3b, \fBPROTOCOL_BINARY_CMD_RDECRQ\fP = 0x3c }"
+.br
+.ti -1c
+.RI "enum \fBprotocol_binary_datatypes\fP { \fBPROTOCOL_BINARY_RAW_BYTES\fP = 0x00 }"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_get\fP"
+Definition of the packet used by the get, getq, getk and getkq command\&. See section 4 
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_getq\fP"
+
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_getk\fP"
+
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_getkq\fP"
+
+.SS "typedef \fBprotocol_binary_response_get\fP \fBprotocol_binary_response_getq\fP"
+
+.SS "typedef \fBprotocol_binary_response_get\fP \fBprotocol_binary_response_getk\fP"
+
+.SS "typedef \fBprotocol_binary_response_get\fP \fBprotocol_binary_response_getkq\fP"
+
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_delete\fP"
+Definition of the packet used by the delete command See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_delete\fP"
+Definition of the packet returned by the delete command See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_flush\fP"
+Definition of the packet returned by the flush command See section 4 
+.SS "typedef \fBprotocol_binary_request_set\fP \fBprotocol_binary_request_add\fP"
+
+.SS "typedef \fBprotocol_binary_request_set\fP \fBprotocol_binary_request_replace\fP"
+
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_set\fP"
+Definition of the packet returned by set, add and replace See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_add\fP"
+
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_replace\fP"
+
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_noop\fP"
+Definition of the noop packet See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_noop\fP"
+Definition of the packet returned by the noop command See section 4 
+.SS "typedef \fBprotocol_binary_request_incr\fP \fBprotocol_binary_request_decr\fP"
+
+.SS "typedef \fBprotocol_binary_response_incr\fP \fBprotocol_binary_response_decr\fP"
+
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_quit\fP"
+Definition of the quit See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_quit\fP"
+Definition of the packet returned by the quit command See section 4 
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_append\fP"
+Definition of the packet used by append and prepend command See section 4 
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_prepend\fP"
+
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_append\fP"
+Definition of the packet returned from a successful append or prepend See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_prepend\fP"
+
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_version\fP"
+Definition of the packet used by the version command See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_version\fP"
+Definition of the packet returned from a successful version command See section 4 
+.SS "typedef \fBprotocol_binary_request_no_extras\fP \fBprotocol_binary_request_stats\fP"
+Definition of the packet used by the stats command\&. See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_stats\fP"
+Definition of the packet returned from a successful stats command See section 4 
+.SS "typedef \fBprotocol_binary_response_no_extras\fP \fBprotocol_binary_response_touch\fP"
+Definition of the packet returned from the touch command 
+.SS "typedef \fBprotocol_binary_request_gat\fP \fBprotocol_binary_request_gatq\fP"
+
+.SS "typedef \fBprotocol_binary_request_gat\fP \fBprotocol_binary_request_gatk\fP"
+
+.SS "typedef \fBprotocol_binary_request_gat\fP \fBprotocol_binary_request_gatkq\fP"
+
+.SS "typedef \fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gat\fP"
+Definition of the packet returned from the GAT(Q) 
+.SS "typedef \fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gatq\fP"
+
+.SS "typedef \fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gatk\fP"
+
+.SS "typedef \fBprotocol_binary_response_get\fP \fBprotocol_binary_response_gatkq\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rget\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rset\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rsetq\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rappend\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rappendq\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rprepend\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rprependq\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdelete\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdeleteq\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rincr\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rincrq\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdecr\fP"
+
+.SS "typedef \fBprotocol_binary_request_rangeop\fP \fBprotocol_binary_request_rdecrq\fP"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBprotocol_binary_magic\fP"
+This file contains definitions of the constants and packet formats defined in the binary specification\&. Please note that you \fIMUST\fP remember to convert each multibyte field to / from network byte order to / from host order\&. Definition of the legal 'magic' values used in a packet\&. See section 3\&.1 Magic byte 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIPROTOCOL_BINARY_REQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RES \fP\fP
+.SS "enum \fBprotocol_binary_response_status\fP"
+Definition of the valid response status numbers\&. See section 3\&.2 Response Status 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_SUCCESS \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_KEY_ENOENT \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_KEY_EEXISTS \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_E2BIG \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_EINVAL \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_NOT_STORED \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_DELTA_BADVAL \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_AUTH_ERROR \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_AUTH_CONTINUE \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_UNKNOWN_COMMAND \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_RESPONSE_ENOMEM \fP\fP
+.SS "enum \fBprotocol_binary_command\fP"
+Defintion of the different command opcodes\&. See section 3\&.3 Command Opcodes 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GET \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_SET \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_ADD \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_REPLACE \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_DELETE \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_INCREMENT \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_DECREMENT \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_QUIT \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_FLUSH \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GETQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_NOOP \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_VERSION \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GETK \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GETKQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_APPEND \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_PREPEND \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_STAT \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_SETQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_ADDQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_REPLACEQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_DELETEQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_INCREMENTQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_DECREMENTQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_QUITQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_FLUSHQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_APPENDQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_PREPENDQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_TOUCH \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GAT \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GATQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GATK \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_GATKQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_SASL_LIST_MECHS \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_SASL_AUTH \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_SASL_STEP \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RGET \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RSET \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RSETQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RAPPEND \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RAPPENDQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RPREPEND \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RPREPENDQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RDELETE \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RDELETEQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RINCR \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RINCRQ \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RDECR \fP\fP
+.TP
+\fB\fIPROTOCOL_BINARY_CMD_RDECRQ \fP\fP
+.SS "enum \fBprotocol_binary_datatypes\fP"
+Definition of the data types in the packet See section 3\&.4 Data Types 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIPROTOCOL_BINARY_RAW_BYTES \fP\fP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.

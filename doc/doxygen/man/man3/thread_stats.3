@@ -1,0 +1,135 @@
+.TH "thread_stats" 3 "Wed Apr 3 2013" "Version 0.8" "memcached" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+thread_stats \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <memcached\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "pthread_mutex_t \fBmutex\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBget_cmds\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBget_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBtouch_cmds\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBtouch_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBdelete_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBincr_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBdecr_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBcas_misses\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBbytes_read\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBbytes_written\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBflush_cmds\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBconn_yields\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBauth_cmds\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBauth_errors\fP"
+.br
+.ti -1c
+.RI "struct \fBslab_stats\fP \fBslab_stats\fP [\fBMAX_NUMBER_OF_SLAB_CLASSES\fP]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Stats stored per-thread\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "pthread_mutex_t thread_stats::mutex"
+
+.PP
+Referenced by do_add_delta(), do_store_item(), and threadlocal_stats_aggregate()\&.
+.SS "uint64_t thread_stats::get_cmds"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::get_misses"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::touch_cmds"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::touch_misses"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::delete_misses"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::incr_misses"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::decr_misses"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::cas_misses"
+
+.PP
+Referenced by do_store_item(), threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::bytes_read"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::bytes_written"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::flush_cmds"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::conn_yields"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::auth_cmds"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "uint64_t thread_stats::auth_errors"
+
+.PP
+Referenced by threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+.SS "struct \fBslab_stats\fP thread_stats::slab_stats[\fBMAX_NUMBER_OF_SLAB_CLASSES\fP]"
+
+.PP
+Referenced by do_add_delta(), do_store_item(), slab_stats_aggregate(), threadlocal_stats_aggregate(), and threadlocal_stats_reset()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for memcached from the source code\&.
