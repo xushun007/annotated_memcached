@@ -44,3 +44,5 @@ should never go to disk, or you've lost the whole point of it)
 Want to contribute?  Up-to-date pointers should be at:
 
 * http://contributing.appspot.com/memcached
+
+pull request test
