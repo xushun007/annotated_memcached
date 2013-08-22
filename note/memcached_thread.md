@@ -10,7 +10,7 @@ memcached的线程池模型采用**Master-Worker**模型：
 
 * 主线程负责监听、建立连接，并将其分发至工作线程处理；
 * 工作线程处理该连接的读写事件。
-![](../img/master-worker.png)
+![](img/master-worker.png)
 
 ### 核心数据结构  
 
