@@ -343,15 +343,15 @@ extern struct settings settings;
 typedef struct _stritem {
     struct _stritem *next;       /* 双向链表 */
     struct _stritem *prev;
-    struct _stritem *h_next;    /* hash chain next */
-    rel_time_t      time;       /* least recent access */
-    rel_time_t      exptime;    /* expire time */
-    int             nbytes;     /* size of data */
-    unsigned short  refcount;
-    uint8_t         nsuffix;    /* length of flags-and-length string */
+    struct _stritem *h_next;    /* hash chain next */ /* 指向hash值相同的下一个元素 */
+    rel_time_t      time;       /* least recent access */ /* 最近访问的时间 */
+    rel_time_t      exptime;    /* expire time */  /* 过期时间 */
+    int             nbytes;     /* size of data */ /* 数据大小 */
+    unsigned short  refcount;   /* 被引用数 */
+    uint8_t         nsuffix;    /* length of flags-and-length string */ /* 后缀长度 */
     uint8_t         it_flags;   /* ITEM_* above */
     uint8_t         slabs_clsid;/* which slab class we're in */   /* 此item所属哪个slabclass */
-    uint8_t         nkey;       /* key length, w/terminating null and padding */
+    uint8_t         nkey;       /* key length, w/terminating null and padding */ /* 键的长度　*/
     /* this odd type prevents type-punning issues when we do
      * the little shuffle to save space when not using CAS. */
     union {

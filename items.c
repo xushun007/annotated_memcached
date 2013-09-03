@@ -15,7 +15,7 @@
 
 /* Forward Declarations */
 /* 前向声明 */
-static void item_link_q(item *it);
+static vod item_link_q(item *it);
 static void item_unlink_q(item *it);
 
 /*

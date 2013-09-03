@@ -829,6 +829,10 @@ void slab_stats_aggregate(struct thread_stats *stats, struct slab_stats *out) {
 /**
  * 初始化线程子系统，创建各种工作线程 
  *
+ * 1. 锁和条件变量初始化
+ * 2. 工作线程结构体空间的分配与初始化
+ * 3. 启动工作线程
+ *
  * nthreads  代表 worker 事件处理线程数目
  * main_base 主线程的Event base
  */
