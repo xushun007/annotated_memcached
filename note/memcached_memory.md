@@ -23,7 +23,7 @@ slab 源于Jeff Bonwick 为`Solaris`操作系统首次引入的一种内存处�
 
 ## 核心数据结构
 
-![](../img/mem_data_struct.jpg)
+![](img/mem_data_struct.jpg)
 
 ### 基本概念
 * slabclass: Memcached存在一个slabclass集合，每个slabclass提供固定大小的内存(chunk)分配，不同slabclass对外分配的内存大小也不一样。初始化的时候，会根据factor确定每个slabclass所要分配的内存大小。

@@ -50,19 +50,19 @@ Consistent Hashing算法由David Karger等人在1997年的论文`Consistent Hash
 	hash(Object 2) = O2
 	...
 
-![](../img/mem_consistent1.JPG)
+![](img/mem_consistent1.JPG)
 
 ### 添加cache服务器
 
 当有大量请求到来时，添加一台新的cache 4服务器，假设hash(cache 4)被映射在O4和O5之间。这时受影响的对象是其hash值处在(C3,C4]区间的缓存对象，这些对象将重新映射到Cache 4服务器上，其他对象不受影响，很好的满足了单调性。
 
-![](../img/mem_consistent2.JPG)
+![](img/mem_consistent2.JPG)
 
 ### 删除cache服务器
 
 假如服务器Cache 2宕机了，程序在请求此服务器上的对象时将向Cache 3服务器发送请求，而Cache 3服务器上没有存储这些对象，因此程序将会从数据库或其他地方读取相关值然后存储在Cache 3服务器中，这样就完成了缓存对象的转移。同样，也满足了单调性。
 
-![](../img/mem_consistent3.JPG)
+![](img/mem_consistent3.JPG)
 
 ### 虚拟节点
 

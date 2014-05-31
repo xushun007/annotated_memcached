@@ -15,7 +15,7 @@ Memcached的线程池模型采用**Master-Worker**模型：
 
 ## 工作流程
 
-![](../img/master-worker.png)
+![](img/master-worker.png)
 
 * Main线程根据配置创建一定数量的worker线程；
 * Main线程和worker线程都独自拥有一个libevent的reactor实例，Main线程的reactor主要监听客户端的连接请求，当新请求到来时通过事件回调函数accept连接，创建对应的sfd，封装成CQ_ITEM实例，然后通过轮询机制放到对应的worker线程里面的CQ队列；

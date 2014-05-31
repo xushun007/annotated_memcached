@@ -17,7 +17,7 @@
 * trace.h	宏定义
 * util.h/util.c	实用函数，主要为字符串到整数的转换
 
-![](../img/mem_source.jpg)
+![](img/mem_source.jpg)
 
 -->
 

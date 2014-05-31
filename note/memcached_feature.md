@@ -34,11 +34,11 @@ Memcached的分布式是通过客户端的程序库来实现的。可用算法�
 
 Memcached的分布式算法将不同的键保存到不同的服务器上。在分布式环境中，当某一台Memcached服务器发生故障无法连接时，只有分布到这台服务器上的key/values对不能访问，其他key/value对不受影响。
 
-![](../img/mem_distributed.JPG)
+![](img/mem_distributed.JPG)
 
 ## Memcached请求流程
 
-![](../img/mem_flow.jpg)
+![](img/mem_flow.jpg)
 
 上图中，蓝线代表程序第一次请求查询数据过程，绿线代表第二次请求数据过程。
 
