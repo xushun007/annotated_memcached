@@ -38,7 +38,7 @@ Memcached的分布式算法将不同的键保存到不同的服务器上。在�
 
 ## Memcached请求流程
 
-![](img/mem_flow.jpg)
+![](img/mem_flow.JPG)
 
 上图中，蓝线代表程序第一次请求查询数据过程，绿线代表第二次请求数据过程。
 
