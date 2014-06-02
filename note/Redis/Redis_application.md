@@ -46,8 +46,3 @@ Redis的Pub/Sub系统可以构建实时的消息系统，比如很多用Pub/Sub�
 
 
 
-为啥 redis 使用跳表(ziplist)而不是使用 red-black？
-http://www.zhihu.com/question/20202931
-
-Redis 在 SNS 类应用中的最佳实践有哪些？
-http://www.zhihu.com/question/19563198
