@@ -152,6 +152,7 @@ listIter是访问链表的迭代器，指针next指向链表的下一个位置�
 Redis是一个KV数据库，数据库的底层实现就是基于字典。
 
 Hashtable结构图
+
 ![Hashtable](hashtable.jpg)
 
 (图片来源于互联网)
