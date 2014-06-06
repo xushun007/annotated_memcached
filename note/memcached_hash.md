@@ -17,4 +17,4 @@ slab机制的存在对hash表是透明的，而hash表对slab层也是不可见�
 * 如果发生冲突，就采用链表存储
 * 如果现在总的item个数大于数组大小的1.5,则尝试扩展hash表
     * Memcached中有两个hash 表，一个是“主hash 表”（primary_hashtable），另外一个是“原有hash表”（old_hashtable）
-    * 每次操作的时候，先会检测表是否正处于扩展(expanding)状态，如果扩展还没完成时，先
+    * 每次操作的时候，先会检测表是否正处于扩展(expanding)状态，如果扩展还没完成时，先在原有hash 表中操作数据。
