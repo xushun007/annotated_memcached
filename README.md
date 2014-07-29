@@ -47,3 +47,9 @@ Redis是一个高性能，基于内存的key-value存储系统。
 参考文献：
 
 [Redis 设计与实现](http://origin.redisbook.com/en/latest/)
+
+## Hadoop 笔记
+
+2014-6
+
+[Hadoop笔记](https://github.com/microheart/hadoop_note)
